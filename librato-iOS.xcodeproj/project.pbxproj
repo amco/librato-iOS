@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6692257E17FE44B800237E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692257D17FE44B800237E77 /* Foundation.framework */; };
+		6692258017FE44B800237E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692257F17FE44B800237E77 /* CoreGraphics.framework */; };
+		6692258217FE44B800237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692258117FE44B800237E77 /* UIKit.framework */; };
+		6692258817FE44B800237E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6692258617FE44B800237E77 /* InfoPlist.strings */; };
+		6692259717FE44B800237E77 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692259617FE44B800237E77 /* XCTest.framework */; };
+		6692259817FE44B800237E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692257D17FE44B800237E77 /* Foundation.framework */; };
+		6692259917FE44B800237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692258117FE44B800237E77 /* UIKit.framework */; };
+		669225A117FE44B800237E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6692259F17FE44B800237E77 /* InfoPlist.strings */; };
+		669225A317FE44B800237E77 /* librato_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225A217FE44B800237E77 /* librato_iOSTests.m */; };
+		669225B117FE457800237E77 /* NSString+SanitizedForMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */; };
+		669225C017FE458100237E77 /* LibratoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B317FE458100237E77 /* LibratoClient.m */; };
+		669225C117FE458100237E77 /* LibratoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B517FE458100237E77 /* LibratoConnection.m */; };
+		669225C217FE458100237E77 /* LibratoDirectPersister.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B717FE458100237E77 /* LibratoDirectPersister.m */; };
+		669225C317FE458100237E77 /* LibratoPersister.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B917FE458100237E77 /* LibratoPersister.m */; };
+		669225C417FE458100237E77 /* LibratoProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225BB17FE458100237E77 /* LibratoProcessor.m */; };
+		669225C517FE458100237E77 /* LibratoQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225BD17FE458100237E77 /* LibratoQueue.m */; };
+		669225C617FE458100237E77 /* LibratoVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225BF17FE458100237E77 /* LibratoVersion.m */; };
+		669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225C817FE458800237E77 /* LibratoGaugeMetric.m */; };
+		669225CC17FE458800237E77 /* LibratoMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225CA17FE458800237E77 /* LibratoMetric.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6692259A17FE44B800237E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6692257217FE44B800237E77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6692257917FE44B800237E77;
+			remoteInfo = "librato-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6692257A17FE44B800237E77 /* librato-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "librato-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6692257D17FE44B800237E77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6692257F17FE44B800237E77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6692258117FE44B800237E77 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6692258517FE44B800237E77 /* librato-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "librato-iOS-Info.plist"; sourceTree = "<group>"; };
+		6692258717FE44B800237E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6692258B17FE44B800237E77 /* librato-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "librato-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		6692259517FE44B800237E77 /* librato-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "librato-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6692259617FE44B800237E77 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6692259E17FE44B800237E77 /* librato-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "librato-iOSTests-Info.plist"; sourceTree = "<group>"; };
+		669225A017FE44B800237E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		669225A217FE44B800237E77 /* librato_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = librato_iOSTests.m; sourceTree = "<group>"; };
+		669225AF17FE457800237E77 /* NSString+SanitizedForMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SanitizedForMetric.h"; sourceTree = "<group>"; };
+		669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SanitizedForMetric.m"; sourceTree = "<group>"; };
+		669225B217FE458100237E77 /* LibratoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoClient.h; sourceTree = "<group>"; };
+		669225B317FE458100237E77 /* LibratoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoClient.m; sourceTree = "<group>"; };
+		669225B417FE458100237E77 /* LibratoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoConnection.h; sourceTree = "<group>"; };
+		669225B517FE458100237E77 /* LibratoConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoConnection.m; sourceTree = "<group>"; };
+		669225B617FE458100237E77 /* LibratoDirectPersister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoDirectPersister.h; sourceTree = "<group>"; };
+		669225B717FE458100237E77 /* LibratoDirectPersister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoDirectPersister.m; sourceTree = "<group>"; };
+		669225B817FE458100237E77 /* LibratoPersister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoPersister.h; sourceTree = "<group>"; };
+		669225B917FE458100237E77 /* LibratoPersister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoPersister.m; sourceTree = "<group>"; };
+		669225BA17FE458100237E77 /* LibratoProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoProcessor.h; sourceTree = "<group>"; };
+		669225BB17FE458100237E77 /* LibratoProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoProcessor.m; sourceTree = "<group>"; };
+		669225BC17FE458100237E77 /* LibratoQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoQueue.h; sourceTree = "<group>"; };
+		669225BD17FE458100237E77 /* LibratoQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoQueue.m; sourceTree = "<group>"; };
+		669225BE17FE458100237E77 /* LibratoVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoVersion.h; sourceTree = "<group>"; };
+		669225BF17FE458100237E77 /* LibratoVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoVersion.m; sourceTree = "<group>"; };
+		669225C717FE458800237E77 /* LibratoGaugeMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoGaugeMetric.h; sourceTree = "<group>"; };
+		669225C817FE458800237E77 /* LibratoGaugeMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoGaugeMetric.m; sourceTree = "<group>"; };
+		669225C917FE458800237E77 /* LibratoMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoMetric.h; sourceTree = "<group>"; };
+		669225CA17FE458800237E77 /* LibratoMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoMetric.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6692257717FE44B800237E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6692258017FE44B800237E77 /* CoreGraphics.framework in Frameworks */,
+				6692258217FE44B800237E77 /* UIKit.framework in Frameworks */,
+				6692257E17FE44B800237E77 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692259217FE44B800237E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6692259717FE44B800237E77 /* XCTest.framework in Frameworks */,
+				6692259917FE44B800237E77 /* UIKit.framework in Frameworks */,
+				6692259817FE44B800237E77 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6692257117FE44B800237E77 = {
+			isa = PBXGroup;
+			children = (
+				6692258317FE44B800237E77 /* librato-iOS */,
+				6692259C17FE44B800237E77 /* librato-iOSTests */,
+				6692257C17FE44B800237E77 /* Frameworks */,
+				6692257B17FE44B800237E77 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6692257B17FE44B800237E77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6692257A17FE44B800237E77 /* librato-iOS.app */,
+				6692259517FE44B800237E77 /* librato-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6692257C17FE44B800237E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6692257D17FE44B800237E77 /* Foundation.framework */,
+				6692257F17FE44B800237E77 /* CoreGraphics.framework */,
+				6692258117FE44B800237E77 /* UIKit.framework */,
+				6692259617FE44B800237E77 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6692258317FE44B800237E77 /* librato-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				669225AC17FE454800237E77 /* Categories */,
+				669225AD17FE454F00237E77 /* Classes */,
+				669225AE17FE455500237E77 /* Metrics */,
+				6692258417FE44B800237E77 /* Supporting Files */,
+			);
+			path = "librato-iOS";
+			sourceTree = "<group>";
+		};
+		6692258417FE44B800237E77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6692258517FE44B800237E77 /* librato-iOS-Info.plist */,
+				6692258617FE44B800237E77 /* InfoPlist.strings */,
+				6692258B17FE44B800237E77 /* librato-iOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6692259C17FE44B800237E77 /* librato-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				669225A217FE44B800237E77 /* librato_iOSTests.m */,
+				6692259D17FE44B800237E77 /* Supporting Files */,
+			);
+			path = "librato-iOSTests";
+			sourceTree = "<group>";
+		};
+		6692259D17FE44B800237E77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6692259E17FE44B800237E77 /* librato-iOSTests-Info.plist */,
+				6692259F17FE44B800237E77 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		669225AC17FE454800237E77 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				669225AF17FE457800237E77 /* NSString+SanitizedForMetric.h */,
+				669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		669225AD17FE454F00237E77 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				669225B217FE458100237E77 /* LibratoClient.h */,
+				669225B317FE458100237E77 /* LibratoClient.m */,
+				669225B417FE458100237E77 /* LibratoConnection.h */,
+				669225B517FE458100237E77 /* LibratoConnection.m */,
+				669225B617FE458100237E77 /* LibratoDirectPersister.h */,
+				669225B717FE458100237E77 /* LibratoDirectPersister.m */,
+				669225B817FE458100237E77 /* LibratoPersister.h */,
+				669225B917FE458100237E77 /* LibratoPersister.m */,
+				669225BA17FE458100237E77 /* LibratoProcessor.h */,
+				669225BB17FE458100237E77 /* LibratoProcessor.m */,
+				669225BC17FE458100237E77 /* LibratoQueue.h */,
+				669225BD17FE458100237E77 /* LibratoQueue.m */,
+				669225BE17FE458100237E77 /* LibratoVersion.h */,
+				669225BF17FE458100237E77 /* LibratoVersion.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		669225AE17FE455500237E77 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				669225C717FE458800237E77 /* LibratoGaugeMetric.h */,
+				669225C817FE458800237E77 /* LibratoGaugeMetric.m */,
+				669225C917FE458800237E77 /* LibratoMetric.h */,
+				669225CA17FE458800237E77 /* LibratoMetric.m */,
+			);
+			path = Metrics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6692257917FE44B800237E77 /* librato-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 669225A617FE44B800237E77 /* Build configuration list for PBXNativeTarget "librato-iOS" */;
+			buildPhases = (
+				6692257617FE44B800237E77 /* Sources */,
+				6692257717FE44B800237E77 /* Frameworks */,
+				6692257817FE44B800237E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "librato-iOS";
+			productName = "librato-iOS";
+			productReference = 6692257A17FE44B800237E77 /* librato-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6692259417FE44B800237E77 /* librato-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 669225A917FE44B800237E77 /* Build configuration list for PBXNativeTarget "librato-iOSTests" */;
+			buildPhases = (
+				6692259117FE44B800237E77 /* Sources */,
+				6692259217FE44B800237E77 /* Frameworks */,
+				6692259317FE44B800237E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6692259B17FE44B800237E77 /* PBXTargetDependency */,
+			);
+			name = "librato-iOSTests";
+			productName = "librato-iOSTests";
+			productReference = 6692259517FE44B800237E77 /* librato-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6692257217FE44B800237E77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Librato;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Amco International Education Services, LLC";
+				TargetAttributes = {
+					6692259417FE44B800237E77 = {
+						TestTargetID = 6692257917FE44B800237E77;
+					};
+				};
+			};
+			buildConfigurationList = 6692257517FE44B800237E77 /* Build configuration list for PBXProject "librato-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6692257117FE44B800237E77;
+			productRefGroup = 6692257B17FE44B800237E77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6692257917FE44B800237E77 /* librato-iOS */,
+				6692259417FE44B800237E77 /* librato-iOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6692257817FE44B800237E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6692258817FE44B800237E77 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692259317FE44B800237E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669225A117FE44B800237E77 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6692257617FE44B800237E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669225C217FE458100237E77 /* LibratoDirectPersister.m in Sources */,
+				669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */,
+				669225C417FE458100237E77 /* LibratoProcessor.m in Sources */,
+				669225C517FE458100237E77 /* LibratoQueue.m in Sources */,
+				669225B117FE457800237E77 /* NSString+SanitizedForMetric.m in Sources */,
+				669225C617FE458100237E77 /* LibratoVersion.m in Sources */,
+				669225CC17FE458800237E77 /* LibratoMetric.m in Sources */,
+				669225C017FE458100237E77 /* LibratoClient.m in Sources */,
+				669225C117FE458100237E77 /* LibratoConnection.m in Sources */,
+				669225C317FE458100237E77 /* LibratoPersister.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6692259117FE44B800237E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				669225A317FE44B800237E77 /* librato_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6692259B17FE44B800237E77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6692257917FE44B800237E77 /* librato-iOS */;
+			targetProxy = 6692259A17FE44B800237E77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6692258617FE44B800237E77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6692258717FE44B800237E77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6692259F17FE44B800237E77 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				669225A017FE44B800237E77 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		669225A417FE44B800237E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		669225A517FE44B800237E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		669225A717FE44B800237E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "librato-iOS/librato-iOS-Prefix.pch";
+				INFOPLIST_FILE = "librato-iOS/librato-iOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		669225A817FE44B800237E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "librato-iOS/librato-iOS-Prefix.pch";
+				INFOPLIST_FILE = "librato-iOS/librato-iOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		669225AA17FE44B800237E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS.app/librato-iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "librato-iOS/librato-iOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "librato-iOSTests/librato-iOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		669225AB17FE44B800237E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS.app/librato-iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "librato-iOS/librato-iOS-Prefix.pch";
+				INFOPLIST_FILE = "librato-iOSTests/librato-iOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6692257517FE44B800237E77 /* Build configuration list for PBXProject "librato-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				669225A417FE44B800237E77 /* Debug */,
+				669225A517FE44B800237E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		669225A617FE44B800237E77 /* Build configuration list for PBXNativeTarget "librato-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				669225A717FE44B800237E77 /* Debug */,
+				669225A817FE44B800237E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		669225A917FE44B800237E77 /* Build configuration list for PBXNativeTarget "librato-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				669225AA17FE44B800237E77 /* Debug */,
+				669225AB17FE44B800237E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6692257217FE44B800237E77 /* Project object */;
+}
