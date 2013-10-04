@@ -17,7 +17,7 @@ extern NSString *const LibratoMetricValueKey;
 
 @property (nonatomic, strong) NSMutableDictionary *data;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) NSDate *measureTime;
+@property (nonatomic, strong) NSDate *measureTime;
 @property (nonatomic, strong) NSString *type;
 
 - (instancetype)initWithName:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options;

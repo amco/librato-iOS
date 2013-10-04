@@ -27,9 +27,9 @@
 
     [requests enumerateObjectsUsingBlock:^(NSDictionary *metricData, NSUInteger idx, BOOL *stop) {
         [client sendPayload:metricData withSuccess:^(NSDictionary *JSON, NSUInteger code) {
-            NSLog(@"WE HAVE WON. %@", JSON);
+            // TODO: Hook for success block
         } orFailure:^(NSError *error, NSDictionary *JSON) {
-            NSLog(@"LOST THE WAR. %@", error);
+            // TODO: Hook for failure block
         }];
     }];
     return YES;

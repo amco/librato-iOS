@@ -11,7 +11,7 @@
 
 typedef void(^TimedExecutionBlock)(void);
 
-@class LibratoClient, LibratoPersister;
+@class LibratoClient, LibratoMetric, LibratoPersister;
 
 @interface LibratoProcessor : NSObject {
     NSMutableDictionary *_queued;

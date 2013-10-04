@@ -26,6 +26,7 @@
 		669225C617FE458100237E77 /* LibratoVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225BF17FE458100237E77 /* LibratoVersion.m */; };
 		669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225C817FE458800237E77 /* LibratoGaugeMetric.m */; };
 		669225CC17FE458800237E77 /* LibratoMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225CA17FE458800237E77 /* LibratoMetric.m */; };
+		6692260A17FF3C2A00237E77 /* Librato.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692260917FF3C2A00237E77 /* Librato.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		669225C817FE458800237E77 /* LibratoGaugeMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoGaugeMetric.m; sourceTree = "<group>"; };
 		669225C917FE458800237E77 /* LibratoMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoMetric.h; sourceTree = "<group>"; };
 		669225CA17FE458800237E77 /* LibratoMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoMetric.m; sourceTree = "<group>"; };
+		6692260817FF3C2A00237E77 /* Librato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Librato.h; sourceTree = "<group>"; };
+		6692260917FF3C2A00237E77 /* Librato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Librato.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				669225AC17FE454800237E77 /* Categories */,
 				669225AD17FE454F00237E77 /* Classes */,
 				669225AE17FE455500237E77 /* Metrics */,
+				6692260817FF3C2A00237E77 /* Librato.h */,
+				6692260917FF3C2A00237E77 /* Librato.m */,
 				6692258417FE44B800237E77 /* Supporting Files */,
 			);
 			path = "librato-iOS";
@@ -306,6 +311,7 @@
 				669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */,
 				669225C417FE458100237E77 /* LibratoProcessor.m in Sources */,
 				669225C517FE458100237E77 /* LibratoQueue.m in Sources */,
+				6692260A17FF3C2A00237E77 /* Librato.m in Sources */,
 				669225B117FE457800237E77 /* NSString+SanitizedForMetric.m in Sources */,
 				669225C617FE458100237E77 /* LibratoVersion.m in Sources */,
 				669225CC17FE458800237E77 /* LibratoMetric.m in Sources */,
@@ -514,6 +520,7 @@
 				669225A817FE44B800237E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		669225A917FE44B800237E77 /* Build configuration list for PBXNativeTarget "librato-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +529,7 @@
 				669225AB17FE44B800237E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

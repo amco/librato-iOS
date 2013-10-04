@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Amco International Education Services, LLC. All rights reserved.
 //
 
+#import "Librato.h"
 #import "LibratoQueue.h"
 #import "LibratoMetric.h"
 
