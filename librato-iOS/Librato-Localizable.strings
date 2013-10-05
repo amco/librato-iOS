@@ -1,0 +1,7 @@
+EXCEPTION_REASON_NOT_IMPLEMENTED = "This method has not yet been implemented";
+EXCEPTION_REASON_NOT_IMPLEMENTED_TEMPLATE = "%@ is not yet implemented";
+EXCEPTION_REASON_INVALID_DATA = "Invalid data";
+EXCEPTION_REASON_INVALID_DATA_DATE_OUT_OF_BOUNDS_TEMPLATE = "Metric's date of %@ is invalid.";
+EXCEPTION_REASON_INVALID_DATA_MISSING_CREDENTIALS = "Missing email or API key";
+EXCEPTION_REASON_INVALID_DATA_MISSING_START_OR_COUNT = "You must provide at least a startTime or count";
+EXCEPTION_REASON_INVALID_DATA_MISSING_SUCCESS_BLOCK = "You must provide a success block";

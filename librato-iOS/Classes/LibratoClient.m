@@ -81,15 +81,11 @@ NSString *APIKey;
     NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"metrics/%@", name] parameters:query];
 
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"WIN. %@", JSON);
-
         if (success)
         {
             success(JSON, response.statusCode);
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"FAIL. %@", error);
-
         if (failure) {
             failure(error, JSON);
         }
@@ -105,12 +101,12 @@ NSString *APIKey;
 {
     if (![options.allKeys containsObject:@"startTime"] || !options.count)
     {
-        @throw [NSException exceptionWithName:@"Bad request" reason:@"You must provide at least a startTime or count" userInfo:nil];
+        @throw [LibratoInvalidDataException exceptionWithReason:NSLocalizedStringFromTable(@"EXCEPTION_REASON_INVALID_DATA_MISSING_START_OR_COUNT", LIBRATO_LOCALIZABLE, nil)];
     }
 
     if (![options.allKeys containsObject:@"success"])
     {
-        @throw [NSException exceptionWithName:@"Bad request" reason:@"You must provide a success handler block" userInfo:nil];
+        @throw [LibratoInvalidDataException exceptionWithReason:NSLocalizedStringFromTable(@"EXCEPTION_REASON_INVALID_DATA_MISSING_SUCCESS_BLOCK", LIBRATO_LOCALIZABLE, nil)];
     }
 
     NSMutableDictionary *query = options.mutableCopy;
@@ -157,7 +153,7 @@ NSString *APIKey;
 {
     email = nil;
     APIKey = nil;
-    _connection = nil; // gem does self.connection = nil. Why?
+    _connection = nil;
 }
 
 
@@ -228,15 +224,11 @@ NSString *APIKey;
     }
 
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"WIN. %@", JSON);
-
         if (success)
         {
             success(JSON, response.statusCode);
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"FAIL. %@", error);
-
         if (failure) {
             failure(error, JSON);
         }
@@ -250,7 +242,7 @@ NSString *APIKey;
 
 - (void)updateMetrics:(NSDictionary *)metrics
 {
-    @throw [NSException exceptionWithName:@"Not implemented" reason:[NSString stringWithFormat:@"%@ is not yet implemented", NSStringFromSelector(_cmd)] userInfo:nil];
+    @throw [LibratoNotImplementedException exceptionWithReason:[NSString stringWithFormat:NSLocalizedStringFromTable(@"EXCEPTION_REASON_NOT_IMPLEMENTED_TEMPLATE", LIBRATO_LOCALIZABLE, nil), NSStringFromSelector(_cmd)]];
 }
 
 
@@ -271,8 +263,7 @@ NSString *APIKey;
     if (!_connection) {
         if (!email || !APIKey)
         {
-            // TODO: Move out to LibratoExceptions w/ const'd error key & inheriting from other errors
-            @throw [NSException exceptionWithName:@"CredentialsMissing" reason:@"Missing email or API key" userInfo:nil];
+            @throw [LibratoInvalidDataException exceptionWithReason:NSLocalizedStringFromTable(@"EXCEPTION_REASON_INVALID_DATA_MISSING_CREDENTIALS", LIBRATO_LOCALIZABLE, nil)];
         }
 
         _connection = [LibratoConnection.alloc initWithClient:self usingEndpoint:self.APIEndpoint];

@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LibratoPersister.h"
-#import "LibratoMetric.h"
+#import "LibratoException.h"
 #import "LibratoGaugeMetric.h"
+#import "LibratoMetric.h"
+#import "LibratoPersister.h"
+
+
+extern NSString *const LIBRATO_LOCALIZABLE;
+
 
 @class LibratoConnection, LibratoClient;
+
 
 @interface Librato : NSObject
 
