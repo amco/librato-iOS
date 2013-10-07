@@ -16,6 +16,7 @@ NSString *const LibratoMetricValueKey = @"value";
 
 @implementation LibratoMetric
 
+#pragma mark - Lifecycle
 + (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options
 {
     return [LibratoMetric.alloc initWithName:name valued:value options:options];
@@ -37,6 +38,7 @@ NSString *const LibratoMetricValueKey = @"value";
 }
 
 
+#pragma mark - Properties
 - (NSString *)name
 {
     return self.data[LibratoMetricNameKey] ?: nil;
@@ -94,6 +96,7 @@ NSString *const LibratoMetricValueKey = @"value";
 }
 
 
+#pragma mark - Exporting data
 - (NSDictionary *)JSON
 {
     NSMutableDictionary *json = self.data.mutableCopy;
@@ -106,12 +109,7 @@ NSString *const LibratoMetricValueKey = @"value";
 }
 
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%@: %p, name: %@, time: %@, data: %@>", NSStringFromClass([self class]), self, self.data[@"name"], self.measureTime, self.data];
-}
-
-
+#pragma mark - Validation
 - (BOOL)isValidValue:(NSNumber *)value
 {
     return (strcmp([value objCType], @encode(BOOL)) == 0) ? NO : YES;
@@ -122,6 +120,13 @@ NSString *const LibratoMetricValueKey = @"value";
 - (NSUInteger)squared
 {
     return pow(self.value.integerValue, 2);
+}
+
+
+#pragma mark - Overrides
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, name: %@, value: %@>", NSStringFromClass([self class]), self, self.name, self.value];
 }
 
 
