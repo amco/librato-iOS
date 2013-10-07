@@ -13,6 +13,8 @@
 #import "LibratoQueue.h"
 #import "LibratoDirectPersister.h"
 
+NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
+
 @implementation Librato
 
 #pragma mark - Class methods
@@ -26,7 +28,7 @@
 {
     if((self = [super init]))
     {
-        self.prefix = prefix;
+        self.prefix = prefix ?: @"";
         [self authenticateEmail:email APIKey:apiKey];
     }
 

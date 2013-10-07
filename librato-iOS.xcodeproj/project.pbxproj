@@ -27,6 +27,8 @@
 		669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225C817FE458800237E77 /* LibratoGaugeMetric.m */; };
 		669225CC17FE458800237E77 /* LibratoMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225CA17FE458800237E77 /* LibratoMetric.m */; };
 		6692260A17FF3C2A00237E77 /* Librato.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692260917FF3C2A00237E77 /* Librato.m */; };
+		6692260E17FF6D1A00237E77 /* LibratoException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692260D17FF6D1A00237E77 /* LibratoException.m */; };
+		6692261017FF79BF00237E77 /* Librato-Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6692260F17FF79BF00237E77 /* Librato-Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,9 @@
 		669225CA17FE458800237E77 /* LibratoMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoMetric.m; sourceTree = "<group>"; };
 		6692260817FF3C2A00237E77 /* Librato.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Librato.h; sourceTree = "<group>"; };
 		6692260917FF3C2A00237E77 /* Librato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Librato.m; sourceTree = "<group>"; };
+		6692260C17FF6D1900237E77 /* LibratoException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoException.h; sourceTree = "<group>"; };
+		6692260D17FF6D1A00237E77 /* LibratoException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoException.m; sourceTree = "<group>"; };
+		6692260F17FF79BF00237E77 /* Librato-Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = "Librato-Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +140,7 @@
 			children = (
 				669225AC17FE454800237E77 /* Categories */,
 				669225AD17FE454F00237E77 /* Classes */,
+				6692260B17FF6CE300237E77 /* Exceptions */,
 				669225AE17FE455500237E77 /* Metrics */,
 				6692260817FF3C2A00237E77 /* Librato.h */,
 				6692260917FF3C2A00237E77 /* Librato.m */,
@@ -149,6 +155,7 @@
 				6692258517FE44B800237E77 /* librato-iOS-Info.plist */,
 				6692258617FE44B800237E77 /* InfoPlist.strings */,
 				6692258B17FE44B800237E77 /* librato-iOS-Prefix.pch */,
+				6692260F17FF79BF00237E77 /* Librato-Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,6 +217,15 @@
 				669225CA17FE458800237E77 /* LibratoMetric.m */,
 			);
 			path = Metrics;
+			sourceTree = "<group>";
+		};
+		6692260B17FF6CE300237E77 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				6692260C17FF6D1900237E77 /* LibratoException.h */,
+				6692260D17FF6D1A00237E77 /* LibratoException.m */,
+			);
+			path = Exceptions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6692258817FE44B800237E77 /* InfoPlist.strings in Resources */,
+				6692261017FF79BF00237E77 /* Librato-Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				669225C217FE458100237E77 /* LibratoDirectPersister.m in Sources */,
+				6692260E17FF6D1A00237E77 /* LibratoException.m in Sources */,
 				669225CB17FE458800237E77 /* LibratoGaugeMetric.m in Sources */,
 				669225C417FE458100237E77 /* LibratoProcessor.m in Sources */,
 				669225C517FE458100237E77 /* LibratoQueue.m in Sources */,
