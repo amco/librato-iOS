@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
     s.source_files          = 'Librato-iOS/**/*.{h,m}'
     s.frameworks            = 'QuartzCore', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'UIKit'
     s.prefix_header_file    = 'librato-iOS/librato-iOS-Prefix.pch'
+    s.resources             = 'Librato-iOS/Librato-Localizable.strings'
     s.requires_arc          = true
 
     s.dependency 'AFNetworking', '~> 1.0'

@@ -168,12 +168,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
     if (!_queued)
     {
         _queued = NSMutableDictionary.dictionary;
-
-//        if (self.isEmpty)
-//        {
-//            return globals;
-//        }
-//
+        
         if (self.source)
         {
             _queued[@"source"] = self.source;
@@ -183,8 +178,6 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         {
             _queued[@"measureTime"] = self.measureTime;
         }
-
-//        [_queued addEntriesFromDictionary:globals];
     }
 
     return _queued;
@@ -213,8 +206,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 {
     if(![self minimumTimeIsBeforeMetricTime:metric])
     {
-        // TODO: Move out to LibratoExceptions w/ const'd error key & inheriting from other errors
-        @throw [NSException exceptionWithName:@"InvalidMeasureTime" reason:[NSString stringWithFormat:@"Measure time for submitted metric %@ is invalid.", metric] userInfo:nil];
+        @throw [LibratoInvalidDataException exceptionWithReason:[NSString stringWithFormat:NSLocalizedStringFromTable(@"EXCEPTION_REASON_INVALID_DATA_DATE_OUT_OF_BOUNDS_TEMPLATE", LIBRATO_LOCALIZABLE, nil), metric.measureTime]];
     }
 }
 

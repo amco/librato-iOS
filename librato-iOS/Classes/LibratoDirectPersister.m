@@ -17,8 +17,7 @@
     BOOL perRequest = ((NSNumber *)options[@"perRequest"]).boolValue;
     if (perRequest)
     {
-        // TODO: Implement
-        @throw [NSException exceptionWithName:@"Not implemented" reason:@"Chunking not yet supported by this persister" userInfo:nil];
+        @throw LibratoNotImplementedException.exception;
     }
     else
     {
