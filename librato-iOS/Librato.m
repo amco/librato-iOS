@@ -135,10 +135,8 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 {
     NSString *originalPrefix = self.client.queue.prefix;
     self.client.queue.prefix = (originalPrefix.length ? [NSString stringWithFormat:@"%@.%@", originalPrefix, name] : name);
-    NSLog(@"prefix: %@", self.client.queue.prefix);
     context(self);
     self.client.queue.prefix = originalPrefix;
-    NSLog(@"prefix: %@", self.client.queue.prefix);
     [self submit];
 }
 
