@@ -25,6 +25,7 @@
     [eventTracker groupDictionaryExample];
     [eventTracker groupContextExample];
     [eventTracker gaugeMetricExample];
+    [eventTracker notificationExample];
     
     return YES;
 }
