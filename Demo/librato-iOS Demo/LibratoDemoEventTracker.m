@@ -118,6 +118,31 @@ NSString *const libratoPrefix = @"demo";
 
 
 /*
+ Provide the name of a notification and that notification will come into the block's context when it's caught.
+ Contexts are executed asynchronously in a Librato-specific serial queue.
+ A subscription with block is used and returned so you're responsible for unsubscribing when appropriate!
+*/
+- (void)notificationExample
+{
+    __weak Librato *weakDemo = LibratoDemoEventTracker.sharedInstance;
+    id subscription = [LibratoDemoEventTracker.sharedInstance listenForNotification:@"state.sleeping" context:^(NSNotification *notification) {
+        LibratoMetric *useName = [LibratoMetric metricNamed:notification.name valued:@100 options:nil];
+        LibratoMetric *useInfo = [LibratoMetric metricNamed:notification.userInfo[@"name"] valued:notification.userInfo[@"value"] options:notification.userInfo];
+        
+        [weakDemo submit:@[useName, useInfo]];
+    }];
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:@"state.sleeping" object:nil userInfo:@{
+                                                                                                     @"name": @"infoName",
+                                                                                                     @"value": @42
+                                                                                                     }];
+    
+    // Don't forget to remove your subscriptions when you're done lest they hang around and point to a nil object!
+    [NSNotificationCenter.defaultCenter removeObserver:subscription];
+}
+
+
+/*
  Creates a series of counter measurements and submits them as a gague metric
 */
 - (void)gaugeMetricExample

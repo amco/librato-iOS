@@ -30,6 +30,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
     if((self = [super init]))
     {
         self.prefix = prefix ?: @"";
+        self.queue = dispatch_queue_create("LibratoQueue", NULL);
         [self authenticateEmail:email APIKey:apiKey];
     }
 
@@ -138,6 +139,20 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
     context(self);
     self.client.queue.prefix = originalPrefix;
     [self submit];
+}
+
+
+- (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context
+{
+    // TODO: Investigate using NSOperationQueue subclass instead of GCD inside of block.
+    // https://developer.apple.com/library/ios/featuredarticles/Short_Practical_Guide_Blocks/index.html#//apple_ref/doc/uid/TP40009758-CH1-SW33
+    id subscription = [NSNotificationCenter.defaultCenter addObserverForName:named object:nil queue:nil usingBlock:^(NSNotification *note) {
+        dispatch_async(self.queue, ^{
+            context(note);
+        });
+    }];
+    
+    return subscription;
 }
 
 
