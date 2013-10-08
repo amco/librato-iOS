@@ -22,6 +22,8 @@
     [eventTracker counterMetricExample];
     [eventTracker multipleMetricSubmissionExample];
     [eventTracker dictionaryCreationExample];
+    [eventTracker groupDictionaryExample];
+    [eventTracker groupContextExample];
     [eventTracker gaugeMetricExample];
     
     return YES;

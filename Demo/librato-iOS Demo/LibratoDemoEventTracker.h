@@ -19,6 +19,8 @@
 - (void)counterMetricExample;
 - (void)multipleMetricSubmissionExample;
 - (void)dictionaryCreationExample;
+- (void)groupDictionaryExample;
+- (void)groupContextExample;
 - (void)gaugeMetricExample;
 
 @end
