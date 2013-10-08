@@ -82,6 +82,42 @@ NSString *const libratoPrefix = @"demo";
 
 
 /*
+ Uses the group helper to build a number of metrics under a common namespace.
+ Different than setting the global namespace as this is only used for this group of metrics and the global namespace will automatically be applied to these as well.
+ Metrics will be created in the order they are entered in the dictionary hash.
+ 
+ The group prefix is the first argument and is joined to each metric named with a period.
+ The dictionary's key value is the metric name as an NSString and the value is an NSNumber value.
+ 
+ If the group is named "foo" and the first metric is named "bar" it will be submitted with the name "foo.bar"
+*/
+- (void)groupDictionaryExample
+{
+    NSDictionary *valueDict = @{
+                                @"repos": @32,
+                                @"stars": @331,
+                                @"friends": @172
+                                };
+    NSArray *metrics = [LibratoDemoEventTracker.sharedInstance groupNamed:@"user" valued:valueDict];
+    [LibratoDemoEventTracker.sharedInstance submit:metrics];
+}
+
+
+/*
+ Provides a Librato context that automatically namespaces any metrics created within that context.
+*/
+- (void)groupContextExample
+{
+    [LibratoDemoEventTracker.sharedInstance groupNamed:@"user" context:^(Librato *l) {
+        LibratoMetric *logins = [LibratoMetric metricNamed:@"logins" valued:@12 options:nil];
+        LibratoMetric *logouts = [LibratoMetric metricNamed:@"logouts" valued:@7 options:nil];
+        LibratoMetric *timeouts = [LibratoMetric metricNamed:@"timeouts" valued:@5 options:nil];
+        [l submit:@[logins, logouts, timeouts]];
+    }];
+}
+
+
+/*
  Creates a series of counter measurements and submits them as a gague metric
 */
 - (void)gaugeMetricExample

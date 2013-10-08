@@ -24,6 +24,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
+#pragma mark - Lifecycle
 - (instancetype)initWithEmail:(NSString *)email token:(NSString *)apiKey prefix:(NSString *)prefix
 {
     if((self = [super init]))
@@ -36,6 +37,26 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
+- (LibratoClient *)client
+{
+    if (!_client)
+    {
+        _client = LibratoClient.new;
+        _client.queue = [LibratoQueue.alloc initWithOptions:@{@"client": _client, @"prefix": self.prefix}];
+    }
+    
+    return _client;
+}
+
+
+#pragma mark - Setup
+- (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey
+{
+    [self.client authenticateEmail:emailAddress APIKey:apiKey];
+}
+
+
+#pragma mark - Property accessors
 - (NSString *)APIEndpoint
 {
     return self.client.APIEndpoint;
@@ -45,30 +66,6 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 - (void)setAPIEndpoint:(NSString *)APIEndpoint
 {
     self.client.APIEndpoint = APIEndpoint;
-}
-
-
-- (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey
-{
-    [self.client authenticateEmail:emailAddress APIKey:apiKey];
-}
-
-
-- (LibratoClient *)client
-{
-    if (!_client)
-    {
-        _client = LibratoClient.new;
-        _client.queue = [LibratoQueue.alloc initWithOptions:@{@"client": _client, @"prefix": self.prefix}];
-    }
-
-    return _client;
-}
-
-
-- (LibratoConnection *)connection
-{
-    return self.client.connection;
 }
 
 
@@ -87,6 +84,12 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 - (id<LibratoPersister>)persister
 {
     return self.client.persister;
+}
+
+
+- (LibratoConnection *)connection
+{
+    return self.client.connection;
 }
 
 
@@ -114,12 +117,44 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
+#pragma mark - Helpers
+- (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values
+{
+    __block NSMutableArray *metrics = NSMutableArray.array;
+    __block LibratoMetric *metric;
+    [values enumerateKeysAndObjectsUsingBlock:^(NSString *entry, NSNumber *value, BOOL *stop) {
+        metric = [LibratoMetric metricNamed:[NSString stringWithFormat:@"%@.%@", name, entry] valued:value options:nil];
+        [metrics addObject:metric];
+    }];
+    
+    return metrics;
+}
+
+
+- (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context
+{
+    NSString *originalPrefix = self.client.queue.prefix;
+    self.client.queue.prefix = (originalPrefix.length ? [NSString stringWithFormat:@"%@.%@", originalPrefix, name] : name);
+    context(self);
+    self.client.queue.prefix = originalPrefix;
+    [self submit];
+}
+
+
+#pragma mark - Submission
+- (void)submit
+{
+    [self.client.queue submit];
+}
+
+
 - (void)submit:(id)metrics
 {
     [self.client submit:metrics];
 }
 
 
+#pragma mark - Overrides
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, persister: %@, prefix: %@>", NSStringFromClass([self class]), self, self.client.persister, self.prefix];
