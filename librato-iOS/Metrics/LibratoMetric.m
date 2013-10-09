@@ -17,9 +17,24 @@ NSString *const LibratoMetricValueKey = @"value";
 @implementation LibratoMetric
 
 #pragma mark - Lifecycle
++ (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value
+{
+    return [LibratoMetric.alloc initWithName:name valued:value options:nil];
+}
+
+
 + (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options
 {
     return [LibratoMetric.alloc initWithName:name valued:value options:options];
+}
+
+
++ (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value source:(NSString *)source measureTime:(NSDate *)date
+{
+    return [LibratoMetric.alloc initWithName:name valued:value options:@{
+                                                                         LibratoMetricSourceKey: source,
+                                                                         LibratoMetricMeasureTimeKey: date
+                                                                         }];
 }
 
 
@@ -30,6 +45,7 @@ NSString *const LibratoMetricValueKey = @"value";
         self.data = (options ? options.mutableCopy : @{}.mutableCopy);
         self.name = name;
         self.value = value ?: @0;
+        self.measureTime = options[LibratoMetricMeasureTimeKey] ?: NSDate.date;
         self.source = options[LibratoMetricSourceKey];
         self.type = @"counters";
     }

@@ -21,7 +21,9 @@ extern NSString *const LibratoMetricValueKey;
 @property (nonatomic, strong) NSString *type;
 
 - (instancetype)initWithName:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options;
++ (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value;
 + (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options;
++ (instancetype)metricNamed:(NSString *)name valued:(NSNumber *)value source:(NSString *)source measureTime:(NSDate *)date;
 
 - (NSDictionary *)JSON;
 - (NSString *)source;
