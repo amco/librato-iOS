@@ -51,8 +51,6 @@ NSString *const libratoPrefix = @"demo";
     LibratoMetric *simpleMetric = [LibratoMetric metricNamed:@"works" valued:self.randomNumber options:@{@"source": @"demo app"}];
     simpleMetric.measureTime = [NSDate dateWithTimeIntervalSinceNow:-(3600 * 24)];
     
-    NSLog(@"%@", simpleMetric);
-    
     [LibratoDemoEventTracker.sharedInstance submit:simpleMetric];
 }
 
@@ -64,9 +62,6 @@ NSString *const libratoPrefix = @"demo";
 {
     LibratoMetric *memoryMetric  = [LibratoMetric metricNamed:@"memory.available" valued:self.randomNumber options:nil];
     LibratoMetric *storageMetric = [LibratoMetric metricNamed:@"storage.available" valued:self.randomNumber options:nil];
-    
-    NSLog(@"%@", memoryMetric);
-    NSLog(@"%@", storageMetric);
     
     [LibratoDemoEventTracker.sharedInstance submit:@[memoryMetric, storageMetric]];
 }
@@ -157,7 +152,6 @@ NSString *const libratoPrefix = @"demo";
     LibratoMetric *metric8 = [LibratoMetric metricNamed:@"bagels" valued:@0 options:nil];
     
     NSArray *bagels = @[metric1, metric2, metric3, metric4, metric5, metric6, metric7, metric8];
-    NSLog(@"%@", bagels);
     LibratoGaugeMetric *bagelGuage = [LibratoGaugeMetric metricNamed:@"bagel_guage" measurements:bagels];
     
     [LibratoDemoEventTracker.sharedInstance submit:bagelGuage];
