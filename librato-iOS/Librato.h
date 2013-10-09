@@ -23,10 +23,12 @@ extern NSString *const LIBRATO_LOCALIZABLE;
 
 
 typedef void (^LibratoMetricContext)(Librato *l);
+typedef void (^LibratoNotificationContext)(NSNotification *notification);
 
 
 @property (nonatomic, strong) LibratoClient *client;
 @property (nonatomic, strong) NSString *prefix;
+@property (nonatomic, strong) dispatch_queue_t queue;
 
 + (NSDate *)minimumMeasureTime;
 
@@ -44,8 +46,10 @@ typedef void (^LibratoMetricContext)(Librato *l);
 - (void)getMeasurements:(NSString *)named options:(NSDictionary *)options;
 - (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options;
 - (void)updateMetrics:(NSDictionary *)metrics;
+
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values;
 - (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
+- (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context;
 - (void)submit;
 - (void)submit:(id)metrics;
 @end

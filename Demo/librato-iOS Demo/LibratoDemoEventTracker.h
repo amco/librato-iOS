@@ -22,5 +22,6 @@
 - (void)groupDictionaryExample;
 - (void)groupContextExample;
 - (void)gaugeMetricExample;
+- (void)notificationExample;
 
 @end
