@@ -24,5 +24,6 @@
 - (void)gaugeMetricExample;
 - (void)notificationExample;
 - (void)customUAExample;
+- (void)metricCreationHelpersExample;
 
 @end

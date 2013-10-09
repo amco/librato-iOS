@@ -171,6 +171,20 @@ NSString *const libratoPrefix = @"demo";
 }
 
 
+/*
+ Metrics can be created with increasing levels of specificity
+ There are helpers for simple name & value metrics all the way up to all arguments specified
+*/
+- (void)metricCreationHelpersExample
+{
+    LibratoMetric *basic = [LibratoMetric metricNamed:@"basic" valued:@1];
+    LibratoMetric *explicit = [LibratoMetric metricNamed:@"explicit" valued:@100 source:@"demo" measureTime:NSDate.date];
+    LibratoMetric *custom = [LibratoMetric metricNamed:@"custom" valued:@50 options:@{@"source": @"demo"}];
+    
+    [LibratoDemoEventTracker.sharedInstance submit:@[basic, explicit, custom]];
+}
+
+
 #pragma mark - Helpers
 - (NSNumber *)randomNumber
 {
