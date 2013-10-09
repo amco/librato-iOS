@@ -164,6 +164,19 @@ NSString *const libratoPrefix = @"demo";
 }
 
 
+/*
+ You can add a custom string the User Agent sent with all of the Librato requests
+ WARNING: Setting a custom UA will reset your client's connection so do not do this arbitrarily
+*/
+- (void)customUAExample
+{
+    Librato *l = LibratoDemoEventTracker.sharedInstance;
+    l.customUserAgent = @"Demo UA";
+    
+    [l submit:@{@"ua.custom.instances": @1}];
+}
+
+
 #pragma mark - Helpers
 - (NSNumber *)randomNumber
 {

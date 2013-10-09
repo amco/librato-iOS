@@ -31,12 +31,6 @@ NSString *APIKey;
     return self;
 }
 
-// TODO: Implelement
-- (NSString *)agentIdentifier
-{
-    return @"";
-}
-
 
 - (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey
 {
