@@ -70,6 +70,24 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
+- (LibratoConnection *)connection
+{
+    return self.client.connection;
+}
+
+
+- (NSString *)customUserAgent
+{
+    return self.client.customUserAgent;
+}
+
+
+- (void)setCustomUserAgent:(NSString *)userAgent
+{
+    self.client.customUserAgent = userAgent;
+}
+
+
 - (NSString *)persistence
 {
     return self.client.persistence;
@@ -85,12 +103,6 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 - (id<LibratoPersister>)persister
 {
     return self.client.persister;
-}
-
-
-- (LibratoConnection *)connection
-{
-    return self.client.connection;
 }
 
 
