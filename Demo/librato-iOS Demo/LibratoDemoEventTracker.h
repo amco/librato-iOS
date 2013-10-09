@@ -23,5 +23,6 @@
 - (void)groupContextExample;
 - (void)gaugeMetricExample;
 - (void)notificationExample;
+- (void)customUAExample;
 
 @end
