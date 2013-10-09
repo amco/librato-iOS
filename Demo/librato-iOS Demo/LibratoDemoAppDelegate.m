@@ -26,6 +26,7 @@
     [eventTracker groupContextExample];
     [eventTracker gaugeMetricExample];
     [eventTracker notificationExample];
+    [eventTracker metricCreationHelpersExample];
     
     return YES;
 }
