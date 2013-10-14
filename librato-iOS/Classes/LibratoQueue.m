@@ -75,7 +75,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
             [self.queued addEntriesFromDictionary:@{metric.type: NSMutableArray.array}];
         }
 
-        [(NSMutableArray *)[self.queued objectForKey:metric.type] addObject:metric.JSON];
+        [(NSMutableArray *)[self.queued objectForKey:metric.type] addObject:metric.JSONDictionary];
     }];
 
     [self submitCheck];
@@ -108,16 +108,12 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 }
 
 
-- (NSString *)separateTypeFromMetric:(LibratoMetric *)metric
+// TODO: Unused? Remove?
+- (NSString *)separateTypeFromMetric:(LibratoMetric *)metric __deprecated
 {
     // This is too responsible. Metric should take care of mutation and answering this question.
-    NSString *typeKey = @"type";
-    NSString *name = metric.data[typeKey];
-    if (name)
-    {
-        [metric.data removeObjectForKey:typeKey];
-    }
-    else
+    NSString *name = metric.type;
+    if (name.length == 0)
     {
         name = @"gauges";
     }
@@ -188,7 +184,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 {
     __block NSUInteger result = 0;
     [self.queued enumerateKeysAndObjectsUsingBlock:^(id key, id data, BOOL *stop) {
-        result += [data count];
+        result += [(NSMutableArray *)data count];
     }];
 
     return result;

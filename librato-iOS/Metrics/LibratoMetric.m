@@ -8,6 +8,7 @@
 
 #import "LibratoMetric.h"
 #import "NSString+SanitizedForMetric.h"
+#import "MTLValueTransformer.h"
 
 NSString *const LibratoMetricMeasureTimeKey = @"measure_time";
 NSString *const LibratoMetricNameKey = @"name";
@@ -42,91 +43,90 @@ NSString *const LibratoMetricValueKey = @"value";
 {
     if ((self = super.init))
     {
-        self.data = (options ? options.mutableCopy : @{}.mutableCopy);
-        self.name = name;
-        self.value = value ?: @0;
-        self.measureTime = options[LibratoMetricMeasureTimeKey] ?: NSDate.date;
-        self.source = options[LibratoMetricSourceKey];
-        self.type = @"counters";
+        _name = name;
+        _value = value ?: @0;
+        _measureTime = options[LibratoMetricMeasureTimeKey] ?: NSDate.date;
+        _source = options[LibratoMetricSourceKey] ?: NSNull.null;
+        _type = @"counters";
     }
-
+    
     return self;
 }
 
 
-#pragma mark - Properties
-- (NSString *)name
+#pragma mark - MTLJSONSerializing
++ (NSDictionary *)JSONKeyPathsByPropertyKey
 {
-    return self.data[LibratoMetricNameKey] ?: nil;
+    return @{
+        @"name": LibratoMetricNameKey,
+        @"value": LibratoMetricValueKey,
+        @"measureTime": LibratoMetricMeasureTimeKey,
+        @"source": LibratoMetricSourceKey,
+        @"type": NSNull.null
+    };
 }
 
 
-- (void)setName:(NSString *)name
++ (NSValueTransformer *)measureTimeJSONTransformer
 {
-    NSAssert(name.length > 0, @"Measurements must be named");
-    self.data[LibratoMetricNameKey] = name.sanitizedForMetric;
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *epoch) {
+        return [NSDate dateWithTimeIntervalSince1970:epoch.integerValue];
+    } reverseBlock:^id(NSDate *date) {
+        return @(floor(date.timeIntervalSince1970));
+    }];
 }
 
 
-- (NSDate *)measureTime
++ (NSValueTransformer *)nameJSONTransformer
 {
-    return self.data[LibratoMetricMeasureTimeKey] ?: nil;
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *name) {
+        NSAssert(name.length > 0, @"Measurements must be named");
+        return name.sanitizedForMetric;
+    } reverseBlock:^id(NSString *name) {
+        return name.sanitizedForMetric;
+    }];
 }
 
 
-- (void)setMeasureTime:(NSDate *)measureTime
++ (NSValueTransformer *)sourceJSONTransformer
 {
-    self.data[LibratoMetricMeasureTimeKey] = measureTime;
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *source) {
+        return source.sanitizedForMetric;
+    } reverseBlock:^id(NSString *source) {
+        return (source.length ? source.sanitizedForMetric : nil);
+    }];
 }
 
 
-- (NSString *)source
++ (NSValueTransformer *)valueJSONTransformer
 {
-    return self.data[LibratoMetricSourceKey] ?: nil;
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *value) {
+        NSAssert([self.class isValidValue:value], @"Boolean is not a valid metric value");
+        return value;
+    } reverseBlock:^id(NSNumber *value) {
+        return value;
+    }];
 }
 
 
-- (void)setSource:(NSString *)source
+// TODO: Some magic key's value for JSONDictionaryFromModel: so I don't need this method
+- (NSDictionary *)JSONDictionary
 {
-    if (source.length)
-    {
-        self.data[LibratoMetricSourceKey] = source.sanitizedForMetric;
-    }
-    else
-    {
-        [self.data removeObjectForKey:LibratoMetricSourceKey];
-    }
-}
-
-
-- (NSNumber *)value
-{
-    return self.data[LibratoMetricValueKey] ?: nil;
-}
-
-
-- (void)setValue:(NSNumber *)value
-{
-    NSAssert([self isValidValue:value], @"Boolean is not a valid metric value");
-    self.data[LibratoMetricValueKey] = value;
-}
-
-
-#pragma mark - Exporting data
-- (NSDictionary *)JSON
-{
-    NSMutableDictionary *json = self.data.mutableCopy;
-    if ([self.measureTime isKindOfClass:NSDate.class])
-    {
-        json[LibratoMetricMeasureTimeKey] = @(floor(self.measureTime.timeIntervalSince1970));
-    }
-
-    return json;
+    NSArray *nonNullableKeys = @[@"source"];
+	__block NSMutableDictionary *jsonDict = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
+    [nonNullableKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        if ([jsonDict.allKeys containsObject:key] && (jsonDict[key] == NSNull.null || jsonDict[key] == nil))
+        {
+            [jsonDict removeObjectForKey:key];
+        }
+    }];
+    
+	return jsonDict;
 }
 
 
 #pragma mark - Validation
-- (BOOL)isValidValue:(NSNumber *)value
++ (BOOL)isValidValue:(NSNumber *)value
 {
     return (strcmp([value objCType], @encode(BOOL)) == 0) ? NO : YES;
 }
