@@ -16,5 +16,9 @@ extern NSString *const QueueSkipMeasurementTimesKey;
 
 - (instancetype)initWithOptions:(NSDictionary *)options;
 - (LibratoQueue *)add:(id)metrics;
+- (void)clear;
+- (BOOL)isEmpty;
+- (LibratoQueue *)merge:(NSDictionary *)dictionary;
+- (NSUInteger)size;
 
 @end

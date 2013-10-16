@@ -11,6 +11,7 @@
 #import "LibratoQueue.h"
 
 NSString *const DEFAULT_API_ENDPIONT = @"https://metrics-api.librato.com/v1";
+NSString *const ARCHIVE_FILENAME = @"librato.archive";
 NSString *email;
 NSString *APIKey;
 
@@ -22,16 +23,112 @@ NSString *APIKey;
 
 @implementation LibratoClient
 
+#pragma mark - Lifecycle
 - (instancetype)init
 {
     self = [self initWithBaseURL:[NSURL URLWithString:DEFAULT_API_ENDPIONT]];
+    if (self == nil) {
+        return nil;
+    }
+    
     [self setDefaultHeader:@"Accept" value:@"application/json"];
     self.parameterEncoding = AFJSONParameterEncoding;
-
+    self.online = NO;
+    
+    __weak __block LibratoClient *weakself = self;
+    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        weakself.online = (status != AFNetworkReachabilityStatusNotReachable);
+    }];
+    
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(online)) options:NSKeyValueObservingOptionNew context:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(handleForegroundNotificaiton:)
+                                               name:UIApplicationWillEnterForegroundNotification
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(handleForegroundNotificaiton:)
+                                               name:UIApplicationDidFinishLaunchingNotification
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(handleBackgroundNotification:)
+                                               name:UIApplicationDidEnterBackgroundNotification
+                                             object:nil];
+    
     return self;
 }
 
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(online))];
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:LibratoClient.class])
+    {
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(online))])
+        {
+            if ([object isOnline])
+            {
+                [self submit:nil];
+            }
+        }
+    }
+}
+
+
+#pragma mark - Archiving
+- (void)handleForegroundNotificaiton:(NSNotification *)notificaiton
+{
+    NSDictionary *metrics = [self unarchiveMetrics];
+    if (metrics) {
+        // This is because add: can't tell collections from normal dictionaires
+        // TODO: Update add: to take collection name & models when type is found
+        [metrics enumerateKeysAndObjectsUsingBlock:^(NSString *key, LibratoMetric *metric, BOOL *stop) {
+            [self submit:metric];
+        }];
+    }
+}
+
+
+- (void)handleBackgroundNotification:(NSNotification *)notification
+{
+    [self archiveMetrics];
+}
+
+
+- (void)archiveMetrics
+{
+    if (self.queue.isEmpty) return;
+    
+    NSDictionary *archived = [self unarchiveMetrics];
+    if (archived) {
+        [self.queue merge:archived];
+    }
+    
+    [NSKeyedArchiver archiveRootObject:self.metrics toFile:self.archivePath.stringByExpandingTildeInPath];
+    [self.queue clear];
+}
+
+
+- (NSDictionary *)unarchiveMetrics
+{
+    NSString *fullPath = self.archivePath.stringByExpandingTildeInPath;
+    if (![NSFileManager.defaultManager fileExistsAtPath:fullPath]) return nil;
+    
+    NSDictionary *metrics = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+    [NSFileManager.defaultManager removeItemAtPath:fullPath error:nil];
+    return metrics;
+}
+
+
+#pragma mark - Helpers
 - (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey
 {
     [self flushAuthentication];
@@ -130,6 +227,7 @@ NSString *APIKey;
         if (success)
         {
             success(JSON, response.statusCode);
+            [self.queue clear];
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         if (failure) {
@@ -153,8 +251,7 @@ NSString *APIKey;
 
 - (NSDictionary *)metrics
 {
-    // TODO: Implement
-    return NSDictionary.dictionary;
+    return self.queue.queued;
 }
 
 
@@ -194,7 +291,11 @@ NSString *APIKey;
 - (void)submit:(id)metrics
 {
     [self.queue add:metrics];
-    [self.queue submit];
+    
+    if (self.isOnline)
+    {
+        [self.queue submit];
+    }
 }
 
 
@@ -252,6 +353,17 @@ NSString *APIKey;
 }
 
 
+- (NSString *)archivePath
+{
+    if (!_archivePath)
+    {
+        _archivePath = [NSString stringWithFormat:@"%@/%@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0], ARCHIVE_FILENAME];
+    }
+    
+    return _archivePath;
+}
+
+
 - (LibratoConnection *)connection
 {
     if (!_connection) {
@@ -295,7 +407,6 @@ NSString *APIKey;
 {
     return [NSString stringWithFormat:@"<%@: %p, persister: %@, queued: %i>", NSStringFromClass([self class]), self, self.persister, self.queue.queued.count];
 }
-
 
 
 @end

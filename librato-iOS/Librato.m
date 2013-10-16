@@ -150,7 +150,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
     self.client.queue.prefix = (originalPrefix.length ? [NSString stringWithFormat:@"%@.%@", originalPrefix, name] : name);
     context(self);
     self.client.queue.prefix = originalPrefix;
-    [self submit];
+    [self submit:nil];
 }
 
 
@@ -169,12 +169,6 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 
 
 #pragma mark - Submission
-- (void)submit
-{
-    [self.client.queue submit];
-}
-
-
 - (void)submit:(id)metrics
 {
     [self.client submit:metrics];

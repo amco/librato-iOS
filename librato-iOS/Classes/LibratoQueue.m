@@ -7,6 +7,7 @@
 //
 
 #import "Librato.h"
+#import "LibratoMetricCollection.h"
 #import "LibratoQueue.h"
 #import "LibratoMetric.h"
 
@@ -39,14 +40,19 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (LibratoQueue *)add:(id)metrics
 {
+    if (!metrics) return self;
+    
+    // TODO: Clean up duplicate ways to add to the collection
+    if ([metrics isKindOfClass:LibratoMetric.class])
+    {
+        [(NSMutableArray *)[self.queued objectForKey:((LibratoMetric *)metrics).type] addObject:metrics];
+        return self;
+    }
+    
     NSArray *collection;
     if ([metrics isKindOfClass:NSArray.class])
     {
         collection = metrics;
-    }
-    else if ([metrics isKindOfClass:LibratoMetric.class])
-    {
-        collection = @[metrics];
     }
     else if ([metrics isKindOfClass:NSDictionary.class])
     {
@@ -72,10 +78,10 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         // Sure, let's stack even more responsibility in this loop. What could possibly be bad about that?
         if (![self.queued.allKeys containsObject:metric.type])
         {
-            [self.queued addEntriesFromDictionary:@{metric.type: NSMutableArray.array}];
+            [self.queued addEntriesFromDictionary:@{metric.type: LibratoMetricCollection.new}];
         }
-
-        [(NSMutableArray *)[self.queued objectForKey:metric.type] addObject:metric.JSONDictionary];
+        
+        [(LibratoMetricCollection *)[self.queued objectForKey:metric.type] addObject:metric];
     }];
 
     [self submitCheck];
@@ -96,12 +102,28 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         {
             metric = [LibratoMetric metricNamed:key valued:value options:nil];
         }
+        // TODO: Well this is certainly some grief
+        else if ([value respondsToSelector:@selector(enumerateObjectsUsingBlock:)])
+        {
+            // Could be array of NSDictionary, LibratoMetric, whatev. Sanitize again.
+            [value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [self add:obj];
+            }];
+        }
+        // TODO: Here's some more grief
+        else if ([value isKindOfClass:LibratoMetricCollection.class])
+        {
+            [metrics addObjectsFromArray:((LibratoMetricCollection *)value).models];
+        }
         else
         {
             metric = [LibratoMetric metricNamed:key valued:(NSNumber *)((NSDictionary *)value[@"value"]) options:value];
         }
-
-        [metrics addObject:metric];
+        
+        if (metric)
+        {
+            [metrics addObject:metric];
+        }
     }];
 
     return metrics;
@@ -136,7 +158,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (void)clear
 {
-    self.queued = NSMutableDictionary.dictionary;
+    [self.queued removeAllObjects];
 }
 
 
@@ -146,15 +168,25 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 }
 
 
-- (NSArray *)gauges
+- (NSArray *)gauges __deprecated
 {
     return self.queued[@"gauges"] ?: NSArray.array;
 }
 
 
-- (LibratoQueue *)merge
+- (LibratoQueue *)merge:(NSDictionary *)dictionary
 {
-
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, LibratoMetricCollection *collection, BOOL *stop) {
+        if (self.queued[key])
+        {
+            [((LibratoMetricCollection *)self.queued[key]).models addObjectsFromArray:collection.models];
+        }
+        else
+        {
+            self.queued[key] = collection;
+        }
+    }];
+    
     return self;
 }
 
@@ -183,8 +215,8 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 - (NSUInteger)size
 {
     __block NSUInteger result = 0;
-    [self.queued enumerateKeysAndObjectsUsingBlock:^(id key, id data, BOOL *stop) {
-        result += [(NSMutableArray *)data count];
+    [self.queued enumerateKeysAndObjectsUsingBlock:^(id key, LibratoMetricCollection *collection, BOOL *stop) {
+        result += collection.models.count;
     }];
 
     return result;
@@ -245,7 +277,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, queued: %i>", NSStringFromClass([self class]), self, self.queued.count];
+    return [NSString stringWithFormat:@"<%@: %p, queued: %i>", NSStringFromClass([self class]), self, self.size];
 }
 
 

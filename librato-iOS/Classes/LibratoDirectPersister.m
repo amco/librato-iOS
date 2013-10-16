@@ -8,6 +8,7 @@
 
 #import "LibratoClient.h"
 #import "LibratoDirectPersister.h"
+#import "LibratoMetricCollection.h"
 
 @implementation LibratoDirectPersister
 
@@ -21,7 +22,11 @@
     }
     else
     {
-        requests = @[queued];
+        NSMutableDictionary *jsonRequests = @{}.mutableCopy;
+        [queued enumerateKeysAndObjectsUsingBlock:^(NSString *key, LibratoMetricCollection *collection, BOOL *stop) {
+            jsonRequests[key] = collection.toJSON;
+        }];
+        requests = @[jsonRequests];
     }
 
     [requests enumerateObjectsUsingBlock:^(NSDictionary *metricData, NSUInteger idx, BOOL *stop) {
@@ -31,6 +36,7 @@
             // TODO: Hook for failure block
         }];
     }];
+    
     return YES;
 }
 
