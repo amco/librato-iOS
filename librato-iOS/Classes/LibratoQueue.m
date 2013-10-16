@@ -45,7 +45,14 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
     // TODO: Clean up duplicate ways to add to the collection
     if ([metrics isKindOfClass:LibratoMetric.class])
     {
-        [(NSMutableArray *)[self.queued objectForKey:((LibratoMetric *)metrics).type] addObject:metrics];
+        LibratoMetric *metric = metrics;
+        if (metric.measureTime)
+        {
+            [self checkMeasurementTime:metric];
+        }
+        
+        LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
+        [bucket addObject:metrics];
         return self;
     }
     
@@ -76,17 +83,24 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         }
 
         // Sure, let's stack even more responsibility in this loop. What could possibly be bad about that?
-        if (![self.queued.allKeys containsObject:metric.type])
-        {
-            [self.queued addEntriesFromDictionary:@{metric.type: LibratoMetricCollection.new}];
-        }
-        
-        [(LibratoMetricCollection *)[self.queued objectForKey:metric.type] addObject:metric];
+        LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
+        [bucket addObject:metric];
     }];
 
     [self submitCheck];
 
     return self;
+}
+
+
+- (LibratoMetricCollection *)collectionNamed:(NSString *)name
+{
+    if (![self.queued.allKeys containsObject:name])
+    {
+        [self.queued addEntriesFromDictionary:@{name: [LibratoMetricCollection collectionNamed:name]}];
+    }
+    
+    return self.queued[name];
 }
 
 

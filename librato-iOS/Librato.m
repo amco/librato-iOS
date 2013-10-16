@@ -20,7 +20,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 #pragma mark - Class methods
 + (NSDate *)minimumMeasureTime
 {
-    return [NSDate.date dateByAddingTimeInterval:-(3600*24*365)];
+    return [NSDate.date dateByAddingTimeInterval:-(60*15)];
 }
 
 
