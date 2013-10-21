@@ -16,7 +16,7 @@
 
 + (instancetype)collectionNamed:(NSString *)name;
 
-- (void)addObject:(id)object;
+- (void)addObject:(LibratoMetric *)metric;
 - (NSMutableArray *)toJSON;
 
 @end

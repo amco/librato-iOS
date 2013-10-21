@@ -32,14 +32,9 @@
 
 
 #pragma mark - Pseudo overrides
-- (void)addObject:(id)object
+- (void)addObject:(LibratoMetric *)metric
 {
-    if (![object isKindOfClass:LibratoMetric.class])
-    {
-        @throw [LibratoException exceptionWithReason:NSLocalizedString(@"EXCEPTION_REASON_INVALID_DATA_MUST_BE_METRIC", nil)];
-    }
-    
-    [self.models addObject:object];
+    [self.models addObject:metric];
 }
 
 
