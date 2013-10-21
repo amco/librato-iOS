@@ -30,11 +30,7 @@
     }
 
     [requests enumerateObjectsUsingBlock:^(NSDictionary *metricData, NSUInteger idx, BOOL *stop) {
-        [client sendPayload:metricData withSuccess:^(NSDictionary *JSON, NSUInteger code) {
-            // TODO: Hook for success block
-        } orFailure:^(NSError *error, NSDictionary *JSON) {
-            // TODO: Hook for failure block
-        }];
+        [client sendPayload:metricData];
     }];
     
     return YES;

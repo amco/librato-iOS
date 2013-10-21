@@ -105,6 +105,32 @@ The `LibratoGroupMetric` automatically generates the count, sum, minimum, maximu
 
 There's an optional but highly-recommended prefix you can set which will automatically be added to all metric names. This is a great way to isolate data or quickly filter metrics.
 
+# Monitoring Submission Success or Failure
+
+You can set a blocks to handle the success and failure cases for metric submission. These are referenced when the submission calls back so sporadically setting or `nil`-ling the blocks may lead to unexpected results.
+
+```objective-c
+Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com" apiKey:@"abc123..." prefix:@""];
+[libratoInstance setSubmitSuccessBlock:^(NSDictionary *JSON, NSUInteger code) {
+    if (code == 200) {
+        NSLog(@"Successful submission. Response JSON is: %@", JSON);
+    }
+}];
+
+[libratoInstance setSubmitFailureBlock:^(NSError *error, NSDictionary *JSON) {
+    NSLog(@"Error submitting metric: %@", error);
+}];
+
+[libratoInstance submit:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
+```
+
+If you want to disable the blocks, simply set them to `nil`.
+
+```objective-c
+[libratoInstance setSubmitSuccessBlock:nil];
+[libratoInstance setSubmitFailureBlock:nil];
+```
+
 # Offline Metric Gathering
 
 If the device loses network availability all new metrics are cached until the network (WiFi or cell) becomes again available.

@@ -28,6 +28,7 @@
     [eventTracker notificationExample];
     [eventTracker metricCreationHelpersExample];
     [eventTracker customUAExample];
+    [eventTracker submissionBlocksExample];
     
     return YES;
 }

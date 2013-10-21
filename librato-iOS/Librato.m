@@ -130,6 +130,18 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
+- (void)setSubmitSuccessBlock:(ClientSuccessBlock)successBlock
+{
+    self.client.submitSuccessBlock = successBlock;
+}
+
+
+- (void)setSubmitFailureBlock:(ClientFailureBlock)failureBlock
+{
+    self.client.submitFailureBlock = failureBlock;
+}
+
+
 #pragma mark - Helpers
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values
 {

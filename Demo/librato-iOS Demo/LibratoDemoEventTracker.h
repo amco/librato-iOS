@@ -25,5 +25,6 @@
 - (void)notificationExample;
 - (void)customUAExample;
 - (void)metricCreationHelpersExample;
+- (void)submissionBlocksExample;
 
 @end
