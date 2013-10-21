@@ -185,6 +185,24 @@ NSString *const libratoPrefix = @"demo";
 }
 
 
+- (void)submissionBlocksExample
+{
+    Librato *libratoInstance = LibratoDemoEventTracker.sharedInstance;
+    
+    [libratoInstance setSubmitSuccessBlock:^(NSDictionary *JSON, NSUInteger code) {
+        if (code == 200) {
+            NSLog(@"Successful submission. Response JSON is: %@", JSON);
+        }
+    }];
+    
+    [libratoInstance setSubmitFailureBlock:^(NSError *error, NSDictionary *JSON) {
+        NSLog(@"Error submitting metric: %@", error);
+    }];
+    
+    [libratoInstance submit:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
+}
+
+
 #pragma mark - Helpers
 - (NSNumber *)randomNumber
 {

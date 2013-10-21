@@ -219,6 +219,12 @@ NSString *APIKey;
 }
 
 
+- (void)sendPayload:(NSDictionary *)payload
+{
+    [self sendPayload:payload withSuccess:self.submitSuccessBlock orFailure:self.submitFailureBlock];
+}
+
+
 - (void)sendPayload:(NSDictionary *)payload withSuccess:(ClientSuccessBlock)success orFailure:(ClientFailureBlock)failure
 {
     [self setUser:email andToken:APIKey];

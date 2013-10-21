@@ -11,6 +11,7 @@
 #import "LibratoGaugeMetric.h"
 #import "LibratoMetric.h"
 #import "LibratoPersister.h"
+#import "LibratoClient.h"
 
 
 extern NSString *const LIBRATO_LOCALIZABLE;
@@ -48,7 +49,8 @@ typedef void (^LibratoNotificationContext)(NSNotification *notification);
 - (void)getMeasurements:(NSString *)named options:(NSDictionary *)options;
 - (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options;
 - (void)updateMetrics:(NSDictionary *)metrics;
-
+- (void)setSubmitSuccessBlock:(ClientSuccessBlock)successBlock;
+- (void)setSubmitFailureBlock:(ClientFailureBlock)failureBlock;
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values;
 - (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
 - (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context;
