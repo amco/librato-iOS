@@ -17,9 +17,11 @@ typedef void (^ClientFailureBlock)(NSError *error, NSDictionary *JSON);
 
 @interface LibratoClient : AFHTTPClient
 
-@property (nonatomic, strong) NSString *APIEndpoint;
 @property (nonatomic, strong) NSString *agentIdentifier;
+@property (nonatomic, strong) NSString *APIEndpoint;
+@property (nonatomic, strong) NSString *archivePath;
 @property (nonatomic, strong) LibratoConnection *connection;
+@property (nonatomic, assign, getter = isOnline) BOOL online;
 @property (nonatomic, strong) NSString *persistence;
 @property (nonatomic, strong) id<LibratoPersister> persister;
 @property (nonatomic, strong) LibratoQueue *queue;
@@ -27,6 +29,7 @@ typedef void (^ClientFailureBlock)(NSError *error, NSDictionary *JSON);
 - (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey;
 - (void)getMetric:(NSString *)name options:(NSDictionary *)options;
 - (void)getMeasurements:(NSString *)named options:(NSDictionary *)options;
+- (NSDictionary *)metrics;
 - (void)sendPayload:(NSDictionary *)payload withSuccess:(ClientSuccessBlock)success orFailure:(ClientFailureBlock)failure;
 - (void)submit:(id)metrics;
 - (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options;

@@ -49,7 +49,7 @@ NSString *const libratoPrefix = @"demo";
 - (void)counterMetricExample
 {
     LibratoMetric *simpleMetric = [LibratoMetric metricNamed:@"works" valued:self.randomNumber options:@{@"source": @"demo app"}];
-    simpleMetric.measureTime = [NSDate dateWithTimeIntervalSinceNow:-(3600 * 24)];
+    simpleMetric.measureTime = [NSDate dateWithTimeIntervalSinceNow:-(60*5)];
     
     [LibratoDemoEventTracker.sharedInstance submit:simpleMetric];
 }

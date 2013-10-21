@@ -7,6 +7,7 @@
 //
 
 #import "Librato.h"
+#import "LibratoMetricCollection.h"
 #import "LibratoQueue.h"
 #import "LibratoMetric.h"
 
@@ -39,14 +40,26 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (LibratoQueue *)add:(id)metrics
 {
+    if (!metrics) return self;
+    
+    // TODO: Clean up duplicate ways to add to the collection
+    if ([metrics isKindOfClass:LibratoMetric.class])
+    {
+        LibratoMetric *metric = metrics;
+        if (metric.measureTime)
+        {
+            [self checkMeasurementTime:metric];
+        }
+        
+        LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
+        [bucket addObject:metrics];
+        return self;
+    }
+    
     NSArray *collection;
     if ([metrics isKindOfClass:NSArray.class])
     {
         collection = metrics;
-    }
-    else if ([metrics isKindOfClass:LibratoMetric.class])
-    {
-        collection = @[metrics];
     }
     else if ([metrics isKindOfClass:NSDictionary.class])
     {
@@ -70,17 +83,24 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         }
 
         // Sure, let's stack even more responsibility in this loop. What could possibly be bad about that?
-        if (![self.queued.allKeys containsObject:metric.type])
-        {
-            [self.queued addEntriesFromDictionary:@{metric.type: NSMutableArray.array}];
-        }
-
-        [(NSMutableArray *)[self.queued objectForKey:metric.type] addObject:metric.JSON];
+        LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
+        [bucket addObject:metric];
     }];
 
     [self submitCheck];
 
     return self;
+}
+
+
+- (LibratoMetricCollection *)collectionNamed:(NSString *)name
+{
+    if (![self.queued.allKeys containsObject:name])
+    {
+        [self.queued addEntriesFromDictionary:@{name: [LibratoMetricCollection collectionNamed:name]}];
+    }
+    
+    return self.queued[name];
 }
 
 
@@ -96,28 +116,40 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         {
             metric = [LibratoMetric metricNamed:key valued:value options:nil];
         }
+        // TODO: Well this is certainly some grief
+        else if ([value respondsToSelector:@selector(enumerateObjectsUsingBlock:)])
+        {
+            // Could be array of NSDictionary, LibratoMetric, whatev. Sanitize again.
+            [value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [self add:obj];
+            }];
+        }
+        // TODO: Here's some more grief
+        else if ([value isKindOfClass:LibratoMetricCollection.class])
+        {
+            [metrics addObjectsFromArray:((LibratoMetricCollection *)value).models];
+        }
         else
         {
             metric = [LibratoMetric metricNamed:key valued:(NSNumber *)((NSDictionary *)value[@"value"]) options:value];
         }
-
-        [metrics addObject:metric];
+        
+        if (metric)
+        {
+            [metrics addObject:metric];
+        }
     }];
 
     return metrics;
 }
 
 
-- (NSString *)separateTypeFromMetric:(LibratoMetric *)metric
+// TODO: Unused? Remove?
+- (NSString *)separateTypeFromMetric:(LibratoMetric *)metric __deprecated
 {
     // This is too responsible. Metric should take care of mutation and answering this question.
-    NSString *typeKey = @"type";
-    NSString *name = metric.data[typeKey];
-    if (name)
-    {
-        [metric.data removeObjectForKey:typeKey];
-    }
-    else
+    NSString *name = metric.type;
+    if (name.length == 0)
     {
         name = @"gauges";
     }
@@ -140,7 +172,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (void)clear
 {
-    self.queued = NSMutableDictionary.dictionary;
+    [self.queued removeAllObjects];
 }
 
 
@@ -150,15 +182,25 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 }
 
 
-- (NSArray *)gauges
+- (NSArray *)gauges __deprecated
 {
     return self.queued[@"gauges"] ?: NSArray.array;
 }
 
 
-- (LibratoQueue *)merge
+- (LibratoQueue *)merge:(NSDictionary *)dictionary
 {
-
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, LibratoMetricCollection *collection, BOOL *stop) {
+        if (self.queued[key])
+        {
+            [((LibratoMetricCollection *)self.queued[key]).models addObjectsFromArray:collection.models];
+        }
+        else
+        {
+            self.queued[key] = collection;
+        }
+    }];
+    
     return self;
 }
 
@@ -187,8 +229,8 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 - (NSUInteger)size
 {
     __block NSUInteger result = 0;
-    [self.queued enumerateKeysAndObjectsUsingBlock:^(id key, id data, BOOL *stop) {
-        result += [data count];
+    [self.queued enumerateKeysAndObjectsUsingBlock:^(id key, LibratoMetricCollection *collection, BOOL *stop) {
+        result += collection.models.count;
     }];
 
     return result;
@@ -249,7 +291,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, queued: %i>", NSStringFromClass([self class]), self, self.queued.count];
+    return [NSString stringWithFormat:@"<%@: %p, queued: %i>", NSStringFromClass([self class]), self, self.size];
 }
 
 

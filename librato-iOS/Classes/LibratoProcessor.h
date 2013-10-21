@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "LibratoPersister.h"
+#import "MTLModel.h"
 
 typedef void(^TimedExecutionBlock)(void);
 
 @class LibratoClient, LibratoMetric, LibratoPersister;
 
-@interface LibratoProcessor : NSObject {
+@interface LibratoProcessor : MTLModel {
     NSMutableDictionary *_queued;
 }
 

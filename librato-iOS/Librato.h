@@ -52,6 +52,5 @@ typedef void (^LibratoNotificationContext)(NSNotification *notification);
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values;
 - (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
 - (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context;
-- (void)submit;
 - (void)submit:(id)metrics;
 @end

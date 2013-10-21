@@ -3,6 +3,8 @@ librato-iOS
 
 `librato-iOS` integrates with your iOS application (via [CocoaPods](http://cocoapods.org/)) to make reporting your metrics to [Librato](http://librato.com/) super easy. Reporting is done asynchronously and is designed to stay out of your way while allowing you to dig into each report's details, if you want.
 
+Metrics are automatically cached while the network is unavailable and saved if the app closes before they're submitted. Don't worry about submitting metrics, we make sure they don't go missing before they can be handed off to Librato's service.
+
 Currently iOS versions 6 and 7 are supported and the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
 
 # Quick Start
@@ -19,6 +21,7 @@ Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com" apiKey:@"a
 // You can provide an NSDictionary with values for the optional "source" and "measure_time" fields
 LibratoMetric *filesOpened = [LibratoMetric metricNamed:@"files.opened" valued:@42 options:nil];
 // Optional values can be set directly on the metric object as well.
+// NOTE: The maximum age for any submitted metric is fifteen minutes, as dictated by Librato.
 filesOpened.measureTime = [NSDate.date dateByAddingTimeInterval:-10];
 
 [librato submit:filesOpened];
@@ -102,6 +105,15 @@ The `LibratoGroupMetric` automatically generates the count, sum, minimum, maximu
 
 There's an optional but highly-recommended prefix you can set which will automatically be added to all metric names. This is a great way to isolate data or quickly filter metrics.
 
+# Offline Metric Gathering
+
+If the device loses network availability all new metrics are cached until the network (WiFi or cell) becomes again available.
+
+While offline every metric is stored in app memory so if memory consumption is a concern you may want to configure your app to reduce the amount of metrics gathered or turn off measurements after a certain amount have been gathered. Metrics themselves are very small so this should only be a concern if you're collecting many metrics per minute and will be offline for a lengthy period.
+
+# Persisting Metrics
+
+If the app caches metrics while offline and is then closed all cached metrics are stored in an `NSKeyedArchiver`. This archive is emptied into the queue the next time the app is opened. An `NSKeyedArchiver` is great for this purpose but it does not allow for any kind of querying of the data which means all archived metrics are blindly submitted, regardless of type or data.
 
 # Contribution
 
