@@ -229,11 +229,12 @@ NSString *APIKey;
 {
     [self setUser:email andToken:APIKey];
     NSURLRequest *request = [self requestWithMethod:@"POST" path:@"metrics" parameters:payload];
+    // TODO: Move the queue into a local var that can be resotred if the submit fails
+    [self.queue clear];
     AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         if (success)
         {
             success(JSON, response.statusCode);
-            [self.queue clear];
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         if (failure) {
