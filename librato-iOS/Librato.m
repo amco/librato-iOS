@@ -34,6 +34,15 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 
 
 #pragma mark - Lifecycle
+- (instancetype)init
+{
+    NSAssert(false, @"You must use initWithEmail:token:prefix: to initialize a Librato instance");
+    self = nil;
+    
+    return nil;
+}
+
+
 - (instancetype)initWithEmail:(NSString *)email token:(NSString *)apiKey prefix:(NSString *)prefix
 {
     if((self = [super init]))
