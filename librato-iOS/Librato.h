@@ -23,7 +23,7 @@ extern NSString *const LIBRATO_LOCALIZABLE;
 @interface Librato : NSObject
 
 
-typedef void (^LibratoMetricContext)(Librato *l);
+typedef void (^LibratoMetricContext)(Librato *librato);
 typedef void (^LibratoNotificationContext)(NSNotification *notification);
 
 
