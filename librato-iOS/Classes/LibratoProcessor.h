@@ -19,6 +19,7 @@ typedef void(^TimedExecutionBlock)(void);
 }
 
 @property (nonatomic) NSTimeInterval autosubmitInterval;
+@property (nonatomic, strong) NSTimer *autoSubmitTimer;
 @property (nonatomic) BOOL clearOnFailure;
 @property (nonatomic, strong) NSDate *createTime;
 @property (nonatomic, strong) NSMutableDictionary *queued;

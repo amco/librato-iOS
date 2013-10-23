@@ -235,7 +235,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
     LibratoMetric *screenWidth = [LibratoMetric metricNamed:@"device.screen.width" valued:@(screen.width)];
     LibratoMetric *screenHeight = [LibratoMetric metricNamed:@"device.screen.height" valued:@(screen.height)];
     
-    [self submit:@[screenScale, screenCount, screenWidth, screenHeight]];
+    [self add:@[screenScale, screenCount, screenWidth, screenHeight]];
 }
 
 
@@ -249,7 +249,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
         [versionLevels addObject:[LibratoMetric metricNamed:[NSString stringWithFormat:@"%@.%@", @"os.version", level] valued:value]];
     }];
     
-    [self submit:versionLevels];
+    [self add:versionLevels];
 }
 
 
@@ -263,17 +263,23 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
         [versionLevels addObject:[LibratoMetric metricNamed:[NSString stringWithFormat:@"%@.%@", @"app", level] valued:value]];
     }];
     
-    [self submit:versionLevels];
+    [self add:versionLevels];
 }
 
 
 - (void)trackLibraryMetrics
 {
-    [self submit:[LibratoMetric metricNamed:@"librato-iOS.version" valued:@(LibratoVersion.version.floatValue)]];
+    [self add:[LibratoMetric metricNamed:@"librato-iOS.version" valued:@(LibratoVersion.version.floatValue)]];
 }
 
 
 #pragma mark - Submission
+- (void)add:(id)metrics
+{
+    [self.client.queue add:metrics];
+}
+
+
 - (void)submit:(id)metrics
 {
     [self.client submit:metrics];

@@ -13,6 +13,8 @@
 #import "LibratoProcessor.h"
 
 static NSUInteger MEASUREMENTS_PER_REQUEST = 500;
+static NSTimeInterval MINIMUM_AUTOSUBMIT_INTERVAL = 1;
+static NSTimeInterval SECONDS_BETWEEN_AUTOSUBMITS = 5;
 
 @interface LibratoProcessor ()
 
@@ -21,6 +23,17 @@ static NSUInteger MEASUREMENTS_PER_REQUEST = 500;
 
 @implementation LibratoProcessor
 
+#pragma mark - Lifecycle
+- (void)dealloc
+{
+    if (self.autoSubmitTimer)
+    {
+        [self.autoSubmitTimer invalidate];
+    }
+}
+
+
+#pragma mark - Submission
 - (BOOL)submit
 {
     if (self.queued.count == 0)
@@ -76,7 +89,9 @@ static NSUInteger MEASUREMENTS_PER_REQUEST = 500;
 
 - (void)setupCommonOptions:(NSDictionary *)options
 {
-    self.autosubmitInterval = ((NSNumber *)options[@"autosubmitInterval"]).doubleValue;
+    self.autosubmitInterval = (options[@"autosubmitInterval"] ? ((NSNumber *)options[@"autosubmitInterval"]).doubleValue : SECONDS_BETWEEN_AUTOSUBMITS);
+    self.autoSubmitTimer = [NSTimer timerWithTimeInterval:MINIMUM_AUTOSUBMIT_INTERVAL target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+    [NSRunLoop.currentRunLoop addTimer:self.autoSubmitTimer forMode:NSDefaultRunLoopMode];
     self.client = options[@"client"] ?: LibratoClient.new;
     _perRequest = options[@"perRequest"] ? ((NSNumber *)options[@"perRequest"]).integerValue : MEASUREMENTS_PER_REQUEST;
     self.source = options[@"source"];
@@ -85,6 +100,12 @@ static NSUInteger MEASUREMENTS_PER_REQUEST = 500;
     self.clearOnFailure = ((NSNumber *)options[@"cleaerOnFailure"]).boolValue;
     self.prefix = options[@"prefix"] ?: @"";
     self.queued = options[@"queued"] ?: NSMutableDictionary.dictionary;
+}
+
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    [self autosubmitCheck];
 }
 
 
