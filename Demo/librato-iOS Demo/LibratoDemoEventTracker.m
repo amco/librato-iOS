@@ -51,28 +51,28 @@ NSString *const libratoPrefix = @"demo";
     LibratoMetric *simpleMetric = [LibratoMetric metricNamed:@"works" valued:self.randomNumber options:@{@"source": @"demo app"}];
     simpleMetric.measureTime = [NSDate dateWithTimeIntervalSinceNow:-(60*5)];
     
-    [LibratoDemoEventTracker.sharedInstance submit:simpleMetric];
+    [LibratoDemoEventTracker.sharedInstance add:simpleMetric];
 }
 
 
 /*
- Creates two different metrics but submits them simultaneously
+ Creates two different metrics but adds them simultaneously
 */
 - (void)multipleMetricSubmissionExample
 {
     LibratoMetric *memoryMetric  = [LibratoMetric metricNamed:@"memory.available" valued:self.randomNumber options:nil];
     LibratoMetric *storageMetric = [LibratoMetric metricNamed:@"storage.available" valued:self.randomNumber options:nil];
     
-    [LibratoDemoEventTracker.sharedInstance submit:@[memoryMetric, storageMetric]];
+    [LibratoDemoEventTracker.sharedInstance add:@[memoryMetric, storageMetric]];
 }
 
 
 /*
- Creates and auto-submits two counter metrics: "meaning" and "plutonium", the latter using an NSDictionary to set the value and source simultaneously
+ Creates two counter metrics: "meaning" and "plutonium", the latter using an NSDictionary to set the value and source simultaneously
 */
 - (void)dictionaryCreationExample
 {
-    [LibratoDemoEventTracker.sharedInstance submit:@{@"meaning": self.randomNumber, @"plutonium": @{@"value": @238, @"source": @"Russia, with love"}}];
+    [LibratoDemoEventTracker.sharedInstance add:@{@"meaning": self.randomNumber, @"plutonium": @{@"value": @238, @"source": @"Russia, with love"}}];
 }
 
 
@@ -84,7 +84,7 @@ NSString *const libratoPrefix = @"demo";
  The group prefix is the first argument and is joined to each metric named with a period.
  The dictionary's key value is the metric name as an NSString and the value is an NSNumber value.
  
- If the group is named "foo" and the first metric is named "bar" it will be submitted with the name "foo.bar"
+ If the group is named "foo" and the first metric is named "bar" it metric's submitted name will be "foo.bar"
 */
 - (void)groupDictionaryExample
 {
@@ -94,7 +94,7 @@ NSString *const libratoPrefix = @"demo";
                                 @"friends": @172
                                 };
     NSArray *metrics = [LibratoDemoEventTracker.sharedInstance groupNamed:@"user" valued:valueDict];
-    [LibratoDemoEventTracker.sharedInstance submit:metrics];
+    [LibratoDemoEventTracker.sharedInstance add:metrics];
 }
 
 
@@ -107,7 +107,7 @@ NSString *const libratoPrefix = @"demo";
         LibratoMetric *logins = [LibratoMetric metricNamed:@"logins" valued:@12 options:nil];
         LibratoMetric *logouts = [LibratoMetric metricNamed:@"logouts" valued:@7 options:nil];
         LibratoMetric *timeouts = [LibratoMetric metricNamed:@"timeouts" valued:@5 options:nil];
-        [l submit:@[logins, logouts, timeouts]];
+        [l add:@[logins, logouts, timeouts]];
     }];
 }
 
@@ -124,7 +124,7 @@ NSString *const libratoPrefix = @"demo";
         LibratoMetric *useName = [LibratoMetric metricNamed:notification.name valued:@100 options:nil];
         LibratoMetric *useInfo = [LibratoMetric metricNamed:notification.userInfo[@"name"] valued:notification.userInfo[@"value"] options:notification.userInfo];
         
-        [weakDemo submit:@[useName, useInfo]];
+        [weakDemo add:@[useName, useInfo]];
     }];
     
     [NSNotificationCenter.defaultCenter postNotificationName:@"state.sleeping" object:nil userInfo:@{
@@ -138,7 +138,7 @@ NSString *const libratoPrefix = @"demo";
 
 
 /*
- Creates a series of counter measurements and submits them as a gague metric
+ Creates a series of counter measurements and adds them as a gague metric
 */
 - (void)gaugeMetricExample
 {
@@ -154,7 +154,7 @@ NSString *const libratoPrefix = @"demo";
     NSArray *bagels = @[metric1, metric2, metric3, metric4, metric5, metric6, metric7, metric8];
     LibratoGaugeMetric *bagelGuage = [LibratoGaugeMetric metricNamed:@"bagel_guage" measurements:bagels];
     
-    [LibratoDemoEventTracker.sharedInstance submit:bagelGuage];
+    [LibratoDemoEventTracker.sharedInstance add:bagelGuage];
 }
 
 
@@ -167,7 +167,7 @@ NSString *const libratoPrefix = @"demo";
     Librato *l = LibratoDemoEventTracker.sharedInstance;
     l.customUserAgent = @"Demo UA";
     
-    [l submit:@{@"ua.custom.instances": @1}];
+    [l add:@{@"ua.custom.instances": @1}];
 }
 
 
@@ -181,7 +181,7 @@ NSString *const libratoPrefix = @"demo";
     LibratoMetric *explicit = [LibratoMetric metricNamed:@"explicit" valued:@100 source:@"demo" measureTime:NSDate.date];
     LibratoMetric *custom = [LibratoMetric metricNamed:@"custom" valued:@50 options:@{@"source": @"demo"}];
     
-    [LibratoDemoEventTracker.sharedInstance submit:@[basic, explicit, custom]];
+    [LibratoDemoEventTracker.sharedInstance add:@[basic, explicit, custom]];
 }
 
 
@@ -199,7 +199,7 @@ NSString *const libratoPrefix = @"demo";
         NSLog(@"Error submitting metric: %@", error);
     }];
     
-    [libratoInstance submit:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
+    [libratoInstance add:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
 }
 
 

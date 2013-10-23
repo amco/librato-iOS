@@ -36,6 +36,7 @@ typedef void (^LibratoNotificationContext)(NSNotification *notification);
 - (instancetype)initWithEmail:(NSString *)email token:(NSString *)apiKey prefix:(NSString *)prefix;
 
 - (LibratoClient *)client;
+- (void)add:(id)metrics;
 - (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey;
 - (NSString *)APIEndpoint;
 - (void)setAPIEndpoint:(NSString *)APIEndpoint;

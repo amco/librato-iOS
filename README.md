@@ -24,7 +24,7 @@ LibratoMetric *filesOpened = [LibratoMetric metricNamed:@"files.opened" valued:@
 // NOTE: The maximum age for any submitted metric is fifteen minutes, as dictated by Librato.
 filesOpened.measureTime = [NSDate.date dateByAddingTimeInterval:-10];
 
-[librato submit:filesOpened];
+[librato add:filesOpened];
 ```
 
 # Installation
@@ -75,10 +75,10 @@ metric.source = @"the internet";
 metric.measureTime = [NSDate.date dateByAddingTimeInterval:-(3600 * 24)]
 ```
 
-Optionally, you can create one or more counters inline with an NSDictionary when submitting.
+Optionally, you can create one or more counters inline with an NSDictionary when adding.
 
 ```objective-c
-[<some librato instance> submit:@{@"downloads": @13, @"plutonium": @{@"value": @238, @"source": @"Russia, with love"}}];
+[<some librato instance> add:@{@"downloads": @13, @"plutonium": @{@"value": @238, @"source": @"Russia, with love"}}];
 ```
 
 ### Grouping
@@ -101,6 +101,26 @@ LibratoGaugeMetric *bagelGuage = [LibratoGaugeMetric metricNamed:@"bagel_guage" 
 
 The `LibratoGroupMetric` automatically generates the count, sum, minimum, maximum and square values for the aggregate data for use in the reporting tool.
 
+# Submitting
+
+It is usually unnecessary to manually submit metrics. By default, `librato-iOS` will automatically submit anything that has been added to the queue every five seconds, if interent connectivity is available.
+
+Use the `autosubmitInterval` option when initializing a `LibratoQueue` instance to configure how often submissions should be triggered.
+
+This interval can be adjusted to any `NSTimeInterval` measurement but `librato-iOS` will only run the check for your timer once every second to avoid automated flooding.
+
+### Manual submission
+
+If you have a metrics you'd like to add to the queue and trigger an immediate submission you can use the `submit:` method. This accepts either metrics or a `nil` value.
+
+```objective-c
+// Adding metrics and immediately triggering a submission
+[<some librato-iOS instance> submit:metrics];
+
+// Passing nil will simply trigger the submission
+[<some librato-iOS instance> submit:nil];
+```
+
 # Custom Prefix
 
 There's an optional but highly-recommended prefix you can set which will automatically be added to all metric names. This is a great way to isolate data or quickly filter metrics.
@@ -121,7 +141,7 @@ Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com" apiKey:@"a
     NSLog(@"Error submitting metric: %@", error);
 }];
 
-[libratoInstance submit:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
+[libratoInstance add:[LibratoMetric metricNamed:@"callbacks.test" valued:@123]];
 ```
 
 If you want to disable the blocks, simply set them to `nil`.
