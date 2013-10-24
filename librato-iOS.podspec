@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
     s.name                  = "librato-iOS"
-    s.version               = "0.1.2"
+    s.version               = "1.0.0"
     s.summary               = "Librato library for iOS"
     s.description           = <<-DESC
-    A simple wrapper for the Librato API with some conveniences for common use cases
+    A simple, delightful wrapper for the Librato API with conveniences for common use cases
     DESC
     s.homepage              = "https://github.com/amco/librato-iOS"
     s.license               = { :type => 'MIT', :file => 'LICENSE.md' }
@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
     s.requires_arc          = true
 
     s.dependency 'AFNetworking', '~> 1.0'
+    s.dependency 'Mantle', '~> 1.3'
 end

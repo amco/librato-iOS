@@ -6,11 +6,9 @@
 //  Copyright (c) 2013 Amco International Education Services, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "LibratoConnection.h"
 #import "LibratoClient.h"
 #import "LibratoVersion.h"
-#import <AFNetworking/AFNetworking.h>
 
 NSString *const DEFAULT_API_ENDPOINT = @"https://metrics-api.librato.com";
 NSString *const DEFAULT_API_VERSION = @"v1";

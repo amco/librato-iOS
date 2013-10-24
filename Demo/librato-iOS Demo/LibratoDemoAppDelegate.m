@@ -25,6 +25,10 @@
     [eventTracker groupDictionaryExample];
     [eventTracker groupContextExample];
     [eventTracker gaugeMetricExample];
+    [eventTracker notificationExample];
+    [eventTracker metricCreationHelpersExample];
+    [eventTracker customUAExample];
+    [eventTracker submissionBlocksExample];
     
     return YES;
 }

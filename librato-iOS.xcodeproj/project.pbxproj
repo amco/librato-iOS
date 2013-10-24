@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663C7E5B180E0FD70009065F /* LibratoMetricCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 663C7E5A180E0FD70009065F /* LibratoMetricCollection.m */; };
 		6692257E17FE44B800237E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692257D17FE44B800237E77 /* Foundation.framework */; };
 		6692258017FE44B800237E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692257F17FE44B800237E77 /* CoreGraphics.framework */; };
 		6692258217FE44B800237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692258117FE44B800237E77 /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		663C7E59180E0FD70009065F /* LibratoMetricCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoMetricCollection.h; sourceTree = "<group>"; };
+		663C7E5A180E0FD70009065F /* LibratoMetricCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoMetricCollection.m; sourceTree = "<group>"; };
 		6692257A17FE44B800237E77 /* librato-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "librato-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6692257D17FE44B800237E77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6692257F17FE44B800237E77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +218,8 @@
 				669225C817FE458800237E77 /* LibratoGaugeMetric.m */,
 				669225C917FE458800237E77 /* LibratoMetric.h */,
 				669225CA17FE458800237E77 /* LibratoMetric.m */,
+				663C7E59180E0FD70009065F /* LibratoMetricCollection.h */,
+				663C7E5A180E0FD70009065F /* LibratoMetricCollection.m */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				669225C017FE458100237E77 /* LibratoClient.m in Sources */,
 				669225C117FE458100237E77 /* LibratoConnection.m in Sources */,
 				669225C317FE458100237E77 /* LibratoPersister.m in Sources */,
+				663C7E5B180E0FD70009065F /* LibratoMetricCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,9 +23,18 @@ NSString *const squaresKey = @"sum_squares";
 + (instancetype)metricNamed:(NSString *)name measurements:(NSArray *)measurements
 {
     LibratoGaugeMetric *metric = [LibratoGaugeMetric.alloc initWithName:name valued:nil options:nil];
-    metric.measurements = measurements;
+    [metric computeMeasurements: measurements];
 
     return metric;
+}
+
+
+- (instancetype)init
+{
+    NSAssert(false, @"You must use initWithName:valued:options: to initialize a LibratoGagueMetric instance");
+    self = nil;
+    
+    return nil;
 }
 
 
@@ -34,7 +43,6 @@ NSString *const squaresKey = @"sum_squares";
     if ((self = [super initWithName:name valued:nil options:options]))
     {
         self.type = @"gauges";
-        [self.data removeObjectForKey:LibratoMetricValueKey];
     }
 
     return self;
@@ -44,27 +52,36 @@ NSString *const squaresKey = @"sum_squares";
 #pragma mark - Calculations
 - (void)calculateStatisticsFromMeasurements:(NSArray *)measurements
 {
-    self.data[countKey]   = [measurements valueForKeyPath:@"@count.self"];
-    self.data[sumKey]     = [measurements valueForKeyPath:@"@sum.value"];
-    self.data[maxKey]     = [measurements valueForKeyPath:@"@max.value"];
-    self.data[minKey]     = [measurements valueForKeyPath:@"@min.value"];
-    self.data[squaresKey] = [measurements valueForKeyPath:@"@sum.squared"];
+    _count   = [measurements valueForKeyPath:@"@count.self"];
+    _sum     = [measurements valueForKeyPath:@"@sum.value"];
+    _max     = [measurements valueForKeyPath:@"@max.value"];
+    _min     = [measurements valueForKeyPath:@"@min.value"];
+    _squares = [measurements valueForKeyPath:@"@sum.squared"];
 }
 
 
-#pragma mark - Properties
-- (void)setMeasurements:(NSArray *)measurements
+#pragma mark - MTLJSONSerializing
++ (NSDictionary *)JSONKeyPathsByPropertyKey
 {
-    if (measurements)
-    {
-        // TODO: TO have to remove this is a logic flow fault. Clean up in parent.
-        [self.data removeObjectForKey:@"value"];
-        [self calculateStatisticsFromMeasurements:measurements];
-    }
-    else
-    {
-        [self.data removeObjectsForKeys:@[countKey, sumKey, maxKey, minKey, squaresKey]];
-    }
+    return @{
+        @"name": LibratoMetricNameKey,
+        @"measureTime": LibratoMetricMeasureTimeKey,
+        @"source": LibratoMetricSourceKey,
+        @"count": countKey,
+        @"sum": sumKey,
+        @"min": minKey,
+        @"max": maxKey,
+        @"squares": squaresKey,
+        @"type": NSNull.null,
+        LibratoMetricValueKey: NSNull.null
+    };
+}
+
+
+#pragma mark - Helpers
+- (void)computeMeasurements:(NSArray *)measurements
+{
+    [self calculateStatisticsFromMeasurements:measurements];
 }
 
 
