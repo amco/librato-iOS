@@ -31,10 +31,16 @@
 }
 
 
-#pragma mark - Pseudo overrides
-- (void)addObject:(LibratoMetric *)metric
+#pragma mark - Model management
+- (void)addMetric:(LibratoMetric *)metric
 {
     [self.models addObject:metric];
+}
+
+
+- (void)removeMetric:(LibratoMetric *)metric
+{
+    [self.models removeObject:metric];
 }
 
 

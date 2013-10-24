@@ -17,9 +17,9 @@ typedef void (^ClientFailureBlock)(NSError *error, NSDictionary *JSON);
 
 @interface LibratoClient : AFHTTPClient
 
-@property (nonatomic, strong) NSString *agentIdentifier;
-@property (nonatomic, strong) NSString *APIEndpoint;
-@property (nonatomic, strong) NSString *archivePath;
+@property (nonatomic, copy) NSString *agentIdentifier;
+@property (nonatomic, copy) NSString *APIEndpoint;
+@property (nonatomic, copy) NSString *archivePath;
 @property (nonatomic, strong) LibratoConnection *connection;
 @property (nonatomic, assign, getter = isOnline) BOOL online;
 @property (nonatomic, strong) NSString *persistence;

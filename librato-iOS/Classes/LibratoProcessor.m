@@ -81,7 +81,7 @@ static NSTimeInterval SECONDS_BETWEEN_AUTOSUBMITS = 5;
     return NSClassFromString(type).new;
 }
 
-- (NSTimeInterval)epochTime
++ (NSTimeInterval)epochTime
 {
     return [NSDate.date timeIntervalSince1970];
 }

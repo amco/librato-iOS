@@ -12,7 +12,7 @@
 
 @interface LibratoConnection : NSObject
 
-@property (nonatomic, strong) NSString *APIEndpoint;
+@property (nonatomic, copy) NSString *APIEndpoint;
 @property (nonatomic, strong) LibratoClient *client;
 
 - (instancetype)initWithClient:(LibratoClient *)client usingEndpoint:(NSString *)endpoint;

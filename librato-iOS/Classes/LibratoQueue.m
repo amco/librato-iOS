@@ -52,7 +52,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         }
         
         LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
-        [bucket addObject:metrics];
+        [bucket addMetric:metrics];
         return self;
     }
     
@@ -79,12 +79,12 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
         else if (![self skipMeasurementTimes])
         {
             // Should probably just default to epochTime when a Metric is created
-            metric.measureTime = [NSDate dateWithTimeIntervalSince1970:self.epochTime];
+            metric.measureTime = [NSDate dateWithTimeIntervalSince1970:self.class.epochTime];
         }
 
         // Sure, let's stack even more responsibility in this loop. What could possibly be bad about that?
         LibratoMetricCollection *bucket = [self collectionNamed:metric.type];
-        [bucket addObject:metric];
+        [bucket addMetric:metric];
     }];
 
     [self submitCheck];
