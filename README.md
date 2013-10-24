@@ -1,7 +1,7 @@
 librato-iOS
 ===========
 
-`librato-iOS` integrates with your iOS application (via [CocoaPods](http://cocoapods.org/)) to make reporting your metrics to [Librato](http://librato.com/) super easy. Reporting is done asynchronously and is designed to stay out of your way while allowing you to dig into each report's details, if you want.
+`librato-iOS` integrates with your iOS application (via [CocoaPods](http://cocoapods.org/)) to make reporting your metrics to [Librato](http://librato.com/) super easy. Reporting is done asynchronously and is designed to stay out of your way while allowing you to dig into each metric's details, if you want.
 
 Metrics are automatically cached while the network is unavailable and saved if the app closes before they're submitted. Don't worry about submitting metrics, we make sure they don't go missing before they can be handed off to Librato's service.
 
@@ -14,16 +14,16 @@ After installing `librato-iOS` into your workspace with CocoaPods just create a 
 ```objective-c
 #import "Librato.h"
 
-...
-// The prefix is optional but recommended as it helps you organize across your different projects
-Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com" apiKey:@"abc123..." prefix:@""];
+// The prefix is optional but recommended as it
+// helps you organize across your different projects
+Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com"
+                                         apiKey:@"abc123..."
+                                         prefix:@""];
 
-// You can provide an NSDictionary with values for the optional "source" and "measure_time" fields
-LibratoMetric *filesOpened = [LibratoMetric metricNamed:@"files.opened" valued:@42 options:nil];
-// Optional values can be set directly on the metric object as well.
-// NOTE: The maximum age for any submitted metric is fifteen minutes, as dictated by Librato.
-filesOpened.measureTime = [NSDate.date dateByAddingTimeInterval:-10];
+// Create a metric with a specific name and value
+LibratoMetric *filesOpened = [LibratoMetric metricNamed:@"files.opened" valued:@42];
 
+// Add it to the queue to be automatically submitted
 [librato add:filesOpened];
 ```
 
@@ -56,7 +56,7 @@ Two types of measurement are currently available: counts and groups. These act a
 This is the default metric type and requires only an NSString name and NSNumber value.
 
 ```objective-c
-LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads" valued:@42 options:nil];
+LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads" valued:@42];
 ```
 
 Additionally, you can provide optional `source` and `measureTime`. The `source` is useful when reviewing data to determine from where measurements with the same name originate. The `measureTime` is automatically generated if not provided but you can set a unique time if you have events that occurred in the past and want to add them to the stack. Metrics must be marked as happening within the last year's time.
@@ -66,19 +66,31 @@ Additionally, you can provide optional `source` and `measureTime`. The `source` 
 These values can be provided in the `options` NSDictionary or stated explicitly after the object has been instantiated.
 
 ```objective-c
-LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads" valued:@42 options:@{@"source": @"the internet", @"measureTime": [NSDate.date dateByAddingTimeInterval:-(3600 * 24)]}];
+NSDate *previousDay = [NSDate.date dateByAddingTimeInterval:-(3600 * 24)];
+LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads"
+                                            valued:@42
+                                           options:@{
+                                              @"source": @"the internet",
+                                              @"measureTime": previousDay
+                                            }];
 
 // or...
 
-LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads" valued:@42 options:nil];
+LibratoMetric *metric = [LibratoMetric metricNamed:@"downloads" valued:@42];
 metric.source = @"the internet";
-metric.measureTime = [NSDate.date dateByAddingTimeInterval:-(3600 * 24)]
+metric.measureTime = previousDay;
 ```
 
 Optionally, you can create one or more counters inline with an NSDictionary when adding.
 
 ```objective-c
-[<some librato instance> add:@{@"downloads": @13, @"plutonium": @{@"value": @238, @"source": @"Russia, with love"}}];
+[<some librato instance> add:@{
+                               @"downloads": @13,
+                               @"plutonium": @{
+                                   @"value": @238,
+                                  @"source": @"Russia, with love"
+                                }
+                              }];
 ```
 
 ### Grouping
@@ -86,14 +98,14 @@ Optionally, you can create one or more counters inline with an NSDictionary when
 Groups are aggregated metrics of multiple data points with related, meaningful data. These are created with an array of counter metrics.
 
 ```objective-c
-LibratoMetric *bagelMetric1 = [LibratoMetric metricNamed:@"bagels" valued:@13 options:nil];
-LibratoMetric *bagelMetric2 = [LibratoMetric metricNamed:@"bagels" valued:@10 options:nil];
-LibratoMetric *bagelMetric3 = [LibratoMetric metricNamed:@"bagels" valued:@9 options:nil];
-LibratoMetric *bagelMetric4 = [LibratoMetric metricNamed:@"bagels" valued:@8 options:nil];
-LibratoMetric *bagelMetric5 = [LibratoMetric metricNamed:@"bagels" valued:@2 options:nil];
-LibratoMetric *bagelMetric6 = [LibratoMetric metricNamed:@"bagels" valued:@1 options:nil];
-LibratoMetric *bagelMetric7 = [LibratoMetric metricNamed:@"bagels" valued:@0 options:nil];
-LibratoMetric *bagelMetric8 = [LibratoMetric metricNamed:@"bagels" valued:@0 options:nil];
+LibratoMetric *bagelMetric1 = [LibratoMetric metricNamed:@"bagels" valued:@13];
+LibratoMetric *bagelMetric2 = [LibratoMetric metricNamed:@"bagels" valued:@10];
+LibratoMetric *bagelMetric3 = [LibratoMetric metricNamed:@"bagels" valued:@9];
+LibratoMetric *bagelMetric4 = [LibratoMetric metricNamed:@"bagels" valued:@8];
+LibratoMetric *bagelMetric5 = [LibratoMetric metricNamed:@"bagels" valued:@2];
+LibratoMetric *bagelMetric6 = [LibratoMetric metricNamed:@"bagels" valued:@1];
+LibratoMetric *bagelMetric7 = [LibratoMetric metricNamed:@"bagels" valued:@0];
+LibratoMetric *bagelMetric8 = [LibratoMetric metricNamed:@"bagels" valued:@0];
 
 NSArray *bagels = @[bagelMetric1, bagelMetric2, bagelMetric3, bagelMetric4, bagelMetric5, bagelMetric6, bagelMetric7, bagelMetric8];
 LibratoGaugeMetric *bagelGuage = [LibratoGaugeMetric metricNamed:@"bagel_guage" measurements:bagels];
@@ -125,12 +137,14 @@ If you have a metrics you'd like to add to the queue and trigger an immediate su
 
 There's an optional but highly-recommended prefix you can set which will automatically be added to all metric names. This is a great way to isolate data or quickly filter metrics.
 
-# Monitoring Submission Success or Failure
+# Submission Success or Failure
 
 You can set a blocks to handle the success and failure cases for metric submission. These are referenced when the submission calls back so sporadically setting or `nil`-ling the blocks may lead to unexpected results.
 
 ```objective-c
-Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com" apiKey:@"abc123..." prefix:@""];
+Librato *librato = [Librato.alloc initWithEmail:@"user@somewhere.com"
+                                         apiKey:@"abc123..."
+                                         prefix:@""];
 [libratoInstance setSubmitSuccessBlock:^(NSDictionary *JSON, NSUInteger code) {
     if (code == 200) {
         NSLog(@"Successful submission. Response JSON is: %@", JSON);
