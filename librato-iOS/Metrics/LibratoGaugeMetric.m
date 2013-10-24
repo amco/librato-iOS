@@ -29,6 +29,15 @@ NSString *const squaresKey = @"sum_squares";
 }
 
 
+- (instancetype)init
+{
+    NSAssert(false, @"You must use initWithName:valued:options: to initialize a LibratoGagueMetric instance");
+    self = nil;
+    
+    return nil;
+}
+
+
 - (instancetype)initWithName:(NSString *)name valued:(NSNumber *)value options:(NSDictionary *)options
 {
     if ((self = [super initWithName:name valued:nil options:options]))
