@@ -115,7 +115,7 @@ The `LibratoGroupMetric` automatically generates the count, sum, minimum, maximu
 
 # Submitting
 
-It is usually unnecessary to manually submit metrics. By default, `librato-iOS` will automatically submit anything that has been added to the queue every five seconds, if interent connectivity is available.
+It is usually unnecessary to manually submit metrics. By default, `librato-iOS` will automatically submit anything that has been added to the queue every five seconds, if internet connectivity is available.
 
 Use the `autosubmitInterval` option when initializing a `LibratoQueue` instance to configure how often submissions should be triggered.
 
