@@ -53,7 +53,7 @@ typedef void (^LibratoNotificationContext)(NSNotification *notification);
 - (void)setSubmitSuccessBlock:(ClientSuccessBlock)successBlock;
 - (void)setSubmitFailureBlock:(ClientFailureBlock)failureBlock;
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values;
-- (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
+- (void)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
 - (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context;
 - (void)submit:(id)metrics;
 @end

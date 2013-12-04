@@ -175,7 +175,7 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
 }
 
 
-- (NSArray *)groupNamed:(NSString *)name context:(LibratoMetricContext)context
+- (void)groupNamed:(NSString *)name context:(LibratoMetricContext)context
 {
     NSString *originalPrefix = self.client.queue.prefix;
     self.client.queue.prefix = (originalPrefix.length ? [NSString stringWithFormat:@"%@.%@", originalPrefix, name] : name);
