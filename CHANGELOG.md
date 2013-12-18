@@ -1,3 +1,14 @@
+### Version 1.0.2
+
+* Removed the `init` override in `LibratoMetric` to fix an issue where offline cached metrics could not be rehydrated
+
+
+### Version 1.0.1
+
+* Fixed an incorrect method signature with `groupNamed:context:` that was configured to return an `NSArray` instead of being `void`
+* Fixed a misspelling in the `README`
+
+
 ### Version 1.0.0
 
 This is a major revision which means **APIs will break**. It is not backwards compatible with 0.1.x releases. Code from 0.1.x branches will no longer be supported. Please update!
