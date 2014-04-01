@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LibratoClient.h"
 #import "LibratoException.h"
 #import "LibratoGaugeMetric.h"
 #import "LibratoMetric.h"
 #import "LibratoPersister.h"
-#import "LibratoClient.h"
 
 
 extern NSString *const LIBRATO_LOCALIZABLE;
@@ -35,25 +35,28 @@ typedef void (^LibratoNotificationContext)(NSNotification *notification);
 
 - (instancetype)initWithEmail:(NSString *)email token:(NSString *)apiKey prefix:(NSString *)prefix;
 
-- (LibratoClient *)client;
 - (void)add:(id)metrics;
-- (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey;
 - (NSString *)APIEndpoint;
 - (void)setAPIEndpoint:(NSString *)APIEndpoint;
+- (void)authenticateEmail:(NSString *)emailAddress APIKey:(NSString *)apiKey;
+- (LibratoClient *)client;
 - (LibratoConnection *)connection;
 - (NSString *)customUserAgent;
 - (void)setCustomUserAgent:(NSString *)userAgent;
-- (NSString *)persistence;
-- (void)setPersistence:(NSString *)persistence;
-- (id<LibratoPersister>)persister;
 - (void)getMetric:(NSString *)name options:(NSDictionary *)options;
 - (void)getMeasurements:(NSString *)named options:(NSDictionary *)options;
-- (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options;
-- (void)updateMetrics:(NSDictionary *)metrics;
-- (void)setSubmitSuccessBlock:(ClientSuccessBlock)successBlock;
-- (void)setSubmitFailureBlock:(ClientFailureBlock)failureBlock;
 - (NSArray *)groupNamed:(NSString *)name valued:(NSDictionary *)values;
 - (void)groupNamed:(NSString *)name context:(LibratoMetricContext)context;
 - (id)listenForNotification:(NSString *)named context:(LibratoNotificationContext)context;
+- (NSString *)persistence;
+- (void)setPersistence:(NSString *)persistence;
+- (id<LibratoPersister>)persister;
+- (void)setSubmitSuccessBlock:(ClientSuccessBlock)successBlock;
+- (void)setSubmitFailureBlock:(ClientFailureBlock)failureBlock;
 - (void)submit:(id)metrics;
+- (void)trackDefaultMetrics;
+- (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options;
+- (void)updateMetrics:(NSDictionary *)metrics;
+
+
 @end
