@@ -50,7 +50,6 @@ NSString *const LIBRATO_LOCALIZABLE = @"Librato-Localizable";
         self.prefix = prefix ?: @"";
         self.queue = dispatch_queue_create("LibratoQueue", NULL);
         [self authenticateEmail:email APIKey:apiKey];
-        [self trackDefaultMetrics];
     }
 
     return self;
