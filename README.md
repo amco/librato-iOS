@@ -5,7 +5,7 @@ librato-iOS
 
 Metrics are automatically cached while the network is unavailable and saved if the app closes before they're submitted. Don't worry about submitting metrics, we make sure they don't go missing before they can be handed off to Librato's service.
 
-Currently iOS versions 6 and 7 are supported and the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
+Currently iOS version 7 and above is supported and the wonderful [AFNetworking 2](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
 
 # Quick Start
 
