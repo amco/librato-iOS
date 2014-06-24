@@ -15,7 +15,7 @@ typedef void (^ClientFailureBlock)(NSError *error, NSDictionary *JSON);
 
 @class LibratoConnection, LibratoQueue;
 
-@interface LibratoClient : AFHTTPClient
+@interface LibratoClient : AFHTTPSessionManager
 
 @property (nonatomic, copy) NSString *agentIdentifier;
 @property (nonatomic, copy) NSString *APIEndpoint;
