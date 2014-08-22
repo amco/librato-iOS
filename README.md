@@ -7,6 +7,8 @@ Metrics are automatically cached while the network is unavailable and saved if t
 
 Currently iOS version 7 and above is supported and the wonderful [AFNetworking 2](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
 
+If you need iOS 6 support, you can use the `1.0.2` release, which uses AFNetworking 1.x.
+
 # Quick Start
 
 After installing `librato-iOS` into your workspace with CocoaPods just create a Librato instance with your credentials and start adding metrics.
@@ -182,6 +184,11 @@ If the app caches metrics while offline and is then closed all cached metrics ar
 * Fork the project and submit a pull request from a feature or bugfix branch.
 * Please include tests. This is important so we don't break your changes unintentionally in a future version.
 * Please don't modify the podspec, version, or changelog. If you do change these files, please isolate a separate commit so we can cherry-pick around it.
+
+# Contributors
+
+* [Adam Yanalunas](https://github.com/adamyanalunas)
+* [nap-sam-dean](https://github.com/nap-sam-dean)
 
 # Copyright
 
