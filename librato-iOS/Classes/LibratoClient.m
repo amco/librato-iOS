@@ -31,16 +31,18 @@ NSString *APIKey;
         return nil;
     }
     
-    [self setDefaultHeader:@"Accept" value:@"application/json"];
-    self.parameterEncoding = AFJSONParameterEncoding;
+    self.responseSerializer = [[AFJSONResponseSerializer alloc] init];
     self.online = NO;
     
     __weak __block LibratoClient *weakself = self;
-    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    [self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         weakself.online = (status != AFNetworkReachabilityStatusNotReachable);
     }];
     
-    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(online)) options:NSKeyValueObservingOptionNew context:nil];
+    [self.reachabilityManager addObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(isReachable))
+                                  options:NSKeyValueObservingOptionNew
+                                  context:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(handleForegroundNotificaiton:)
@@ -62,7 +64,8 @@ NSString *APIKey;
 
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(online))];
+    [self.reachabilityManager removeObserver:self
+                                  forKeyPath:NSStringFromSelector(@selector(isReachable))];
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
@@ -70,9 +73,9 @@ NSString *APIKey;
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([object isKindOfClass:LibratoClient.class])
+    if ([object isKindOfClass:self.reachabilityManager.class])
     {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(online))])
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(isReachable))])
         {
             if ([object isOnline])
             {
@@ -168,23 +171,19 @@ NSString *APIKey;
     {
         query[@"resolution"] = query[@"resolution"] ?: @(1);
     }
-
-    NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"metrics/%@", name] parameters:query];
-
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        if (success)
-        {
-            success(JSON, response.statusCode);
-        }
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        if (failure) {
-            failure(error, JSON);
-        }
-    }];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [op start];
-    });
+    
+    NSString *path = [NSString stringWithFormat:@"metrics/%@", name];
+    [self GET:path parameters:query
+      success:^(NSURLSessionDataTask *task, id JSON) {
+          if (success)
+          {
+              success(JSON, ((NSHTTPURLResponse *)task.response).statusCode);
+          }
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          if (failure) {
+              failure(error, nil);
+          }
+      }];
 }
 
 
@@ -214,8 +213,8 @@ NSString *APIKey;
 
 - (void)setUser:(NSString *)user andToken:(NSString *)token
 {
-    [self clearAuthorizationHeader];
-    [self setAuthorizationHeaderWithUsername:user password:token];
+    [self.requestSerializer clearAuthorizationHeader];
+    [self.requestSerializer setAuthorizationHeaderFieldWithUsername:user password:token];
 }
 
 
@@ -228,23 +227,20 @@ NSString *APIKey;
 - (void)sendPayload:(NSDictionary *)payload withSuccess:(ClientSuccessBlock)success orFailure:(ClientFailureBlock)failure
 {
     [self setUser:email andToken:APIKey];
-    NSURLRequest *request = [self requestWithMethod:@"POST" path:@"metrics" parameters:payload];
-    // TODO: Move the queue into a local var that can be resotred if the submit fails
+    
     [self.queue clear];
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        if (success)
-        {
-            success(JSON, response.statusCode);
-        }
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        if (failure) {
-            failure(error, JSON);
-        }
-    }];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [op start];
-    });
+    
+    [self POST:@"metrics" parameters:payload
+       success:^(NSURLSessionDataTask *task, id JSON) {
+           if (success)
+           {
+               success(JSON, ((NSHTTPURLResponse *)task.response).statusCode);
+           }
+       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+           if (failure) {
+               failure(error, nil);
+           }
+       }];
 }
 
 
@@ -309,7 +305,6 @@ NSString *APIKey;
 - (void)updateMetricsNamed:(NSString *)name options:(NSDictionary *)options
 {
     NSMutableDictionary *query = options.mutableCopy;
-    NSURLRequest *request = [self requestWithMethod:@"PUT" path:[NSString stringWithFormat:@"metrics/%@", name] parameters:options];
 
     __block ClientSuccessBlock success;
     if (query[@"success"])
@@ -324,21 +319,19 @@ NSString *APIKey;
         failure = [query[@"failure"] copy];
         [query removeObjectForKey:@"failure"];
     }
-
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    
+    NSString *path = [NSString stringWithFormat:@"metrics/%@", name];
+    [self PUT:path parameters:options
+      success:^(NSURLSessionDataTask *task, id JSON) {
         if (success)
         {
-            success(JSON, response.statusCode);
+            success(JSON, ((NSHTTPURLResponse *)task.response).statusCode);
         }
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
-            failure(error, JSON);
+            failure(error, nil);
         }
     }];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [op start];
-    });
 }
 
 

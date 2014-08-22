@@ -1,3 +1,7 @@
+### Version 2.0.0
+
+Upgrade to AFNetworking ~> 2.0 (iOS 7 only)
+
 ### Version 1.0.2
 
 * Removed the `init` override in `LibratoMetric` to fix an issue where offline cached metrics could not be rehydrated
