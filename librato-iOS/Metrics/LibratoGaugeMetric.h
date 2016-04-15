@@ -12,7 +12,7 @@ extern NSString *const LibratoMetricMeasurementsKey;
 
 @interface LibratoGaugeMetric : LibratoMetric
 
-@property (nonatomic, strong) NSNumber *count;
+@property (nonatomic, strong) NSNumber *counter;
 @property (nonatomic, strong) NSNumber *sum;
 @property (nonatomic, strong) NSNumber *min;
 @property (nonatomic, strong) NSNumber *max;
