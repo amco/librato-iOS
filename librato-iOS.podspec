@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = "librato-iOS"
-    s.version               = "1.1.0"
+    s.version               = "1.2.0"
     s.summary               = "Librato library for iOS"
     s.description           = <<-DESC
     A simple, delightful wrapper for the Librato API with conveniences for common use cases
