@@ -18,6 +18,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateInitialViewController];
+    self.window.rootViewController = viewController;
+    
     LibratoDemoEventTracker *eventTracker = LibratoDemoEventTracker.new;
     [eventTracker counterMetricExample];
     [eventTracker multipleMetricSubmissionExample];

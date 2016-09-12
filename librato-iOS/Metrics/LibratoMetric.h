@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MTLModel.h"
-#import "MTLJSONAdapter.h"
+#import <Mantle/MTLModel.h>
+#import <Mantle/MTLJSONAdapter.h>
 
 extern NSString *const LibratoMetricMeasureTimeKey;
 extern NSString *const LibratoMetricNameKey;

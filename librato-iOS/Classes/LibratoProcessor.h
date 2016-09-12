@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LibratoPersister.h"
-#import "MTLModel.h"
+#import <Mantle/MTLModel.h>
 
 typedef void(^TimedExecutionBlock)(void);
 
