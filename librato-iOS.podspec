@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     s.license               = { :type => 'MIT', :file => 'LICENSE.md' }
     s.author                = { "Adam Yanalunas" => "adam@yanalunas.com" }
     s.source                = { :git => "https://github.com/amco/librato-iOS.git", :tag => "#{s.version}" }
-    s.platform              = :ios, '7.0'
+    s.platform              = :ios, '8.0'
     s.source_files          = 'Librato-iOS/**/*.{h,m}'
     s.frameworks            = 'QuartzCore', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'UIKit'
     s.prefix_header_file    = 'librato-iOS/librato-iOS-Prefix.pch'

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		560A756536A341648FDC13D2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A2D3C7197B48C6A9ACC07D /* libPods.a */; };
 		6692261E180358AF00237E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692261D180358AF00237E77 /* Foundation.framework */; };
 		66922620180358AF00237E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692261F180358AF00237E77 /* CoreGraphics.framework */; };
 		66922622180358AF00237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66922621180358AF00237E77 /* UIKit.framework */; };
@@ -21,6 +20,8 @@
 		66922641180358B000237E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6692263F180358B000237E77 /* InfoPlist.strings */; };
 		66922643180358B000237E77 /* librato_iOS_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66922642180358B000237E77 /* librato_iOS_DemoTests.m */; };
 		6692264E18035E8400237E77 /* LibratoDemoEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692264D18035E8400237E77 /* LibratoDemoEventTracker.m */; };
+		669C48111D8764040059EDBD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669C48101D8764040059EDBD /* MainStoryboard.storyboard */; };
+		E83CC217E62447107D693D91 /* libPods-librato-iOS Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,11 @@
 		66922642180358B000237E77 /* librato_iOS_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = librato_iOS_DemoTests.m; sourceTree = "<group>"; };
 		6692264C18035E8400237E77 /* LibratoDemoEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoDemoEventTracker.h; sourceTree = "<group>"; };
 		6692264D18035E8400237E77 /* LibratoDemoEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoDemoEventTracker.m; sourceTree = "<group>"; };
-		BCDC672C42024873966996FA /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		669C48101D8764040059EDBD /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C5A2D3C7197B48C6A9ACC07D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-librato-iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +68,7 @@
 				66922620180358AF00237E77 /* CoreGraphics.framework in Frameworks */,
 				66922622180358AF00237E77 /* UIKit.framework in Frameworks */,
 				6692261E180358AF00237E77 /* Foundation.framework in Frameworks */,
-				560A756536A341648FDC13D2 /* libPods.a in Frameworks */,
+				E83CC217E62447107D693D91 /* libPods-librato-iOS Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +92,7 @@
 				6692263C180358B000237E77 /* librato-iOS DemoTests */,
 				6692261C180358AF00237E77 /* Frameworks */,
 				6692261B180358AF00237E77 /* Products */,
-				BCDC672C42024873966996FA /* Pods.xcconfig */,
+				6F6B67E9F0A698BFCF346684 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +113,7 @@
 				66922621180358AF00237E77 /* UIKit.framework */,
 				66922636180358AF00237E77 /* XCTest.framework */,
 				C5A2D3C7197B48C6A9ACC07D /* libPods.a */,
+				F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				6692264D18035E8400237E77 /* LibratoDemoEventTracker.m */,
 				6692262F180358AF00237E77 /* Images.xcassets */,
 				66922624180358AF00237E77 /* Supporting Files */,
+				669C48101D8764040059EDBD /* MainStoryboard.storyboard */,
 			);
 			path = "librato-iOS Demo";
 			sourceTree = "<group>";
@@ -155,6 +161,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6F6B67E9F0A698BFCF346684 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */,
+				B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,11 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66922646180358B000237E77 /* Build configuration list for PBXNativeTarget "librato-iOS Demo" */;
 			buildPhases = (
-				56571786C5174A36B0BB4AC8 /* Check Pods Manifest.lock */,
+				56571786C5174A36B0BB4AC8 /* [CP] Check Pods Manifest.lock */,
 				66922616180358AF00237E77 /* Sources */,
 				66922617180358AF00237E77 /* Frameworks */,
 				66922618180358AF00237E77 /* Resources */,
-				CF311E2286F14B79A814F7BE /* Copy Pods Resources */,
+				CF311E2286F14B79A814F7BE /* [CP] Copy Pods Resources */,
+				49278725AA6A48415323BBF8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,7 +218,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LibratoDemo;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Amco International Education Services, LLC";
 				TargetAttributes = {
 					66922634180358AF00237E77 = {
@@ -233,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669C48111D8764040059EDBD /* MainStoryboard.storyboard in Resources */,
 				66922628180358AF00237E77 /* InfoPlist.strings in Resources */,
 				66922630180358AF00237E77 /* Images.xcassets in Resources */,
 			);
@@ -249,14 +266,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56571786C5174A36B0BB4AC8 /* Check Pods Manifest.lock */ = {
+		49278725AA6A48415323BBF8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56571786C5174A36B0BB4AC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,19 +296,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		CF311E2286F14B79A814F7BE /* Copy Pods Resources */ = {
+		CF311E2286F14B79A814F7BE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -334,7 +366,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -344,13 +375,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -363,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,7 +411,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -384,20 +420,25 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -406,13 +447,15 @@
 		};
 		66922647180358B000237E77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCDC672C42024873966996FA /* Pods.xcconfig */;
+			baseConfigurationReference = 71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "librato-iOS Demo/librato-iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "librato-iOS Demo/librato-iOS Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -420,13 +463,15 @@
 		};
 		66922648180358B000237E77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCDC672C42024873966996FA /* Pods.xcconfig */;
+			baseConfigurationReference = B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "librato-iOS Demo/librato-iOS Demo-Prefix.pch";
 				INFOPLIST_FILE = "librato-iOS Demo/librato-iOS Demo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -435,7 +480,6 @@
 		6692264A180358B000237E77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS Demo.app/librato-iOS Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -458,7 +502,6 @@
 		6692264B180358B000237E77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS Demo.app/librato-iOS Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

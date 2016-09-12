@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MTLModel.h"
+#import <Mantle/MTLModel.h>
 
 @interface LibratoMetricCollection : MTLModel
 

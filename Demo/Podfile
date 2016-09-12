@@ -1,3 +1,7 @@
-platform :ios, '7.0'
+source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'librato-iOS', :path => '../librato-iOS.podspec'
+platform :ios, '8.0'
+
+target 'librato-iOS Demo' do
+  pod 'librato-iOS', :path => '../librato-iOS.podspec'
+end
