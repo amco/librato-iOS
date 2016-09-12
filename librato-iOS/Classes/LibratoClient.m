@@ -405,7 +405,7 @@ NSString *APIKey;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, persister: %@, queued: %i>", NSStringFromClass([self class]), self, self.persister, self.queue.queued.count];
+    return [NSString stringWithFormat:@"<%@: %p, persister: %@, queued: %ld>", NSStringFromClass([self class]), self, self.persister, (unsigned long)self.queue.queued.count];
 }
 
 

@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.homepage              = "https://github.com/amco/librato-iOS"
     s.license               = { :type => 'MIT', :file => 'LICENSE.md' }
     s.author                = { "Adam Yanalunas" => "adam@yanalunas.com" }
-    s.source                = { :git => "https://github.com/amco/librato-iOS.git", :tag => "#{s.version}" }
+    s.source                = { :git => "https://github.com/amco/librato-iOS.git", :tag => s.version.to_s }
     s.platform              = :ios, '8.0'
     s.source_files          = 'Librato-iOS/**/*.{h,m}'
     s.frameworks            = 'QuartzCore', 'Foundation', 'SystemConfiguration', 'MobileCoreServices', 'UIKit'

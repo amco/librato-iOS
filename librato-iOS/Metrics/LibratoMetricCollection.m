@@ -59,7 +59,7 @@
 #pragma mark - Overrides
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, entries: %i>", NSStringFromClass([self class]), self, self.models.count];
+    return [NSString stringWithFormat:@"<%@: %p, entries: %ld>", NSStringFromClass([self class]), self, (unsigned long)self.models.count];
 }
 
 

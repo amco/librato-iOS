@@ -291,7 +291,7 @@ NSString *const QueueSkipMeasurementTimesKey = @"skipMeasurementTimes";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, queued: %i>", NSStringFromClass([self class]), self, self.size];
+    return [NSString stringWithFormat:@"<%@: %p, queued: %ld>", NSStringFromClass([self class]), self, (unsigned long)self.size];
 }
 
 
