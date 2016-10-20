@@ -57,6 +57,7 @@
 		71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C5A2D3C7197B48C6A9ACC07D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9263DD61DB946660035CC6E /* NSString+SanitizedForMetricTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SanitizedForMetricTests.m"; sourceTree = "<group>"; };
 		F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-librato-iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				66922642180358B000237E77 /* librato_iOS_DemoTests.m */,
+				D9263DD61DB946660035CC6E /* NSString+SanitizedForMetricTests.m */,
 				6692263D180358B000237E77 /* Supporting Files */,
 			);
 			path = "librato-iOS DemoTests";
@@ -293,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CF311E2286F14B79A814F7BE /* [CP] Copy Pods Resources */ = {
@@ -329,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66922643180358B000237E77 /* librato_iOS_DemoTests.m in Sources */,
+				D9263DD71DB946660035CC6E /* NSString+SanitizedForMetricTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
