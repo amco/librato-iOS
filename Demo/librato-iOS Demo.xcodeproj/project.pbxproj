@@ -57,7 +57,7 @@
 		71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C5A2D3C7197B48C6A9ACC07D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9263DD61DB946660035CC6E /* NSString+SanitizedForMetricTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SanitizedForMetricTests.m"; sourceTree = "<group>"; };
+		D9263DD61DB946660035CC6E /* NSString+AULSanitizedForMetricTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AULSanitizedForMetricTests.m"; sourceTree = "<group>"; };
 		F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-librato-iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				66922642180358B000237E77 /* librato_iOS_DemoTests.m */,
-				D9263DD61DB946660035CC6E /* NSString+SanitizedForMetricTests.m */,
+				D9263DD61DB946660035CC6E /* NSString+AULSanitizedForMetricTests.m */,
 				6692263D180358B000237E77 /* Supporting Files */,
 			);
 			path = "librato-iOS DemoTests";
@@ -331,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66922643180358B000237E77 /* librato_iOS_DemoTests.m in Sources */,
-				D9263DD71DB946660035CC6E /* NSString+SanitizedForMetricTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

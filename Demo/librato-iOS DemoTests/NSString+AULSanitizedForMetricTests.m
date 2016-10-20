@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSString+SanitizedForMetric.h"
+#import "NSString+AULSanitizedForMetric.h"
 
 @interface NSString_SanitizedForMetricTests : XCTestCase
 @property (nonatomic, strong) NSString *testString;
