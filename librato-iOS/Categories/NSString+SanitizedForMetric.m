@@ -12,8 +12,8 @@
 
 - (NSString *)sanitizedForMetric
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^A-Za-z0-9.:-_]" options:0 error:NULL];
-    NSString *cleaned = [regex stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, self.length) withTemplate:@"-"];
+    NSCharacterSet *allowedSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:-_"];
+    NSString *cleaned = [[self componentsSeparatedByCharactersInSet:allowedSet.invertedSet] componentsJoinedByString:@"-"];
     return [cleaned substringToIndex:(self.length < 255 ? self.length : 255)];
 }
 
