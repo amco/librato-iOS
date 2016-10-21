@@ -1,16 +1,16 @@
 //
-//  NSString+AYLSanitizedForMetric.m
+//  NSString+ALMSanitizedForMetric.m
 //  Librato-iOS
 //
 //  Created by Adam Yanalunas on 10/3/13.
 //  Copyright (c) 2013 Amco International Education Services, LLC. All rights reserved.
 //
 
-#import "NSString+AYLSanitizedForMetric.h"
+#import "NSString+ALMSanitizedForMetric.h"
 
-@implementation NSString (AYLSanitizedForMetric)
+@implementation NSString (ALMSanitizedForMetric)
 
-- (NSString *)ayl_sanitizedForMetric
+- (NSString *)alm_sanitizedForMetric
 {
     NSCharacterSet *allowedSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:-_"];
     NSString *cleaned = [[self componentsSeparatedByCharactersInSet:allowedSet.invertedSet] componentsJoinedByString:@"-"];

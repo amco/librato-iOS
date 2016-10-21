@@ -7,7 +7,7 @@
 //
 
 #import "LibratoMetric.h"
-#import "NSString+AYLSanitizedForMetric.h"
+#import "NSString+ALMSanitizedForMetric.h"
 #import "MTLValueTransformer.h"
 
 NSString *const LibratoMetricMeasureTimeKey = @"measure_time";
@@ -81,9 +81,9 @@ NSString *const LibratoMetricValueKey = @"value";
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *name) {
         NSAssert(name.length > 0, @"Measurements must be named");
-        return name.ayl_sanitizedForMetric;
+        return name.alm_sanitizedForMetric;
     } reverseBlock:^id(NSString *name) {
-        return name.ayl_sanitizedForMetric;
+        return name.alm_sanitizedForMetric;
     }];
 }
 
@@ -91,9 +91,9 @@ NSString *const LibratoMetricValueKey = @"value";
 + (NSValueTransformer *)sourceJSONTransformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *source) {
-        return source.ayl_sanitizedForMetric;
+        return source.alm_sanitizedForMetric;
     } reverseBlock:^id(NSString *source) {
-        return (source.length ? source.ayl_sanitizedForMetric : nil);
+        return (source.length ? source.alm_sanitizedForMetric : nil);
     }];
 }
 

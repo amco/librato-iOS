@@ -7,13 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSString+AULSanitizedForMetric.h"
+#import "NSString+ALMSanitizedForMetric.h"
 
-@interface NSString_SanitizedForMetricTests : XCTestCase
+@interface NSString_ALMSanitizedForMetricTests : XCTestCase
 @property (nonatomic, strong) NSString *testString;
 @end
 
-@implementation NSString_SanitizedForMetricTests
+@implementation NSString_ALMSanitizedForMetricTests
 
 - (void)setUp {
     [super setUp];
@@ -30,7 +30,7 @@
 - (void)testThatOnlyAllowedCharactersPresent {
     NSString *expectedString = @"A-Za-z0-9.:-_-------------------_------------------------------------";
     
-    XCTAssertEqualObjects(self.testString.sanitizedForMetric, expectedString);
+    XCTAssertEqualObjects(self.testString.alm_sanitizedForMetric, expectedString);
 }
 
 @end
