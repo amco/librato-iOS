@@ -4,4 +4,8 @@ platform :ios, '8.0'
 
 target 'librato-iOS Demo' do
   pod 'librato-iOS', :path => '../librato-iOS.podspec'
+  
+  target 'librato-iOS DemoTests' do
+      inherit! :search_paths
+  end
 end

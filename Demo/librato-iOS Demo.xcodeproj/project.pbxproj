@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6D45DA41B71E92FB0B9E41 /* libPods-librato-iOS DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C644C1E73D9E5B07F26ABA47 /* libPods-librato-iOS DemoTests.a */; };
 		6692261E180358AF00237E77 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692261D180358AF00237E77 /* Foundation.framework */; };
 		66922620180358AF00237E77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692261F180358AF00237E77 /* CoreGraphics.framework */; };
 		66922622180358AF00237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66922621180358AF00237E77 /* UIKit.framework */; };
@@ -21,6 +22,7 @@
 		66922643180358B000237E77 /* librato_iOS_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66922642180358B000237E77 /* librato_iOS_DemoTests.m */; };
 		6692264E18035E8400237E77 /* LibratoDemoEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6692264D18035E8400237E77 /* LibratoDemoEventTracker.m */; };
 		669C48111D8764040059EDBD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 669C48101D8764040059EDBD /* MainStoryboard.storyboard */; };
+		D953BD3F1DBAA49B005EEF1B /* NSString+ALMSanitizedForMetricTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D9263DD61DB946660035CC6E /* NSString+ALMSanitizedForMetricTests.m */; };
 		E83CC217E62447107D693D91 /* libPods-librato-iOS Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +57,11 @@
 		6692264D18035E8400237E77 /* LibratoDemoEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoDemoEventTracker.m; sourceTree = "<group>"; };
 		669C48101D8764040059EDBD /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		801077638741FA5C51076C77 /* Pods-librato-iOS DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS DemoTests/Pods-librato-iOS DemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E8188DE6A6BC172BA811B1C /* Pods-librato-iOS DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS DemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS DemoTests/Pods-librato-iOS DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-librato-iOS Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-librato-iOS Demo/Pods-librato-iOS Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C5A2D3C7197B48C6A9ACC07D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C644C1E73D9E5B07F26ABA47 /* libPods-librato-iOS DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-librato-iOS DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9263DD61DB946660035CC6E /* NSString+ALMSanitizedForMetricTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ALMSanitizedForMetricTests.m"; sourceTree = "<group>"; };
 		F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-librato-iOS Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,6 +85,7 @@
 				66922637180358AF00237E77 /* XCTest.framework in Frameworks */,
 				66922639180358B000237E77 /* UIKit.framework in Frameworks */,
 				66922638180358AF00237E77 /* Foundation.framework in Frameworks */,
+				0D6D45DA41B71E92FB0B9E41 /* libPods-librato-iOS DemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,7 @@
 				66922636180358AF00237E77 /* XCTest.framework */,
 				C5A2D3C7197B48C6A9ACC07D /* libPods.a */,
 				F8E7DC6EE1A84E81B6B7B7A2 /* libPods-librato-iOS Demo.a */,
+				C644C1E73D9E5B07F26ABA47 /* libPods-librato-iOS DemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 			children = (
 				71FE433FB985CA1AB0DF6BDA /* Pods-librato-iOS Demo.debug.xcconfig */,
 				B3CFB32942D9D0C3245EEB4E /* Pods-librato-iOS Demo.release.xcconfig */,
+				8E8188DE6A6BC172BA811B1C /* Pods-librato-iOS DemoTests.debug.xcconfig */,
+				801077638741FA5C51076C77 /* Pods-librato-iOS DemoTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -199,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66922649180358B000237E77 /* Build configuration list for PBXNativeTarget "librato-iOS DemoTests" */;
 			buildPhases = (
+				60F4CC329F21EB0D532804DC /* [CP] Check Pods Manifest.lock */,
 				66922631180358AF00237E77 /* Sources */,
 				66922632180358AF00237E77 /* Frameworks */,
 				66922633180358AF00237E77 /* Resources */,
+				BAACFE891AE2BDA71802DAB9 /* [CP] Embed Pods Frameworks */,
+				B8F1461E083D696A5571BDE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,6 +310,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		60F4CC329F21EB0D532804DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8F1461E083D696A5571BDE5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-librato-iOS DemoTests/Pods-librato-iOS DemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAACFE891AE2BDA71802DAB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-librato-iOS DemoTests/Pods-librato-iOS DemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CF311E2286F14B79A814F7BE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D953BD3F1DBAA49B005EEF1B /* NSString+ALMSanitizedForMetricTests.m in Sources */,
 				66922643180358B000237E77 /* librato_iOS_DemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +539,7 @@
 		};
 		6692264A180358B000237E77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E8188DE6A6BC172BA811B1C /* Pods-librato-iOS DemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS Demo.app/librato-iOS Demo";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -503,6 +562,7 @@
 		};
 		6692264B180358B000237E77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 801077638741FA5C51076C77 /* Pods-librato-iOS DemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/librato-iOS Demo.app/librato-iOS Demo";
 				FRAMEWORK_SEARCH_PATHS = (
