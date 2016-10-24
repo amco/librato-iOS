@@ -1,5 +1,5 @@
 //
-//  NSString+SanitizedForMetric.h
+//  NSString+ALMSanitizedForMetric.h
 //  Librato-iOS
 //
 //  Created by Adam Yanalunas on 10/3/13.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (SanitizedForMetric)
+@interface NSString (ALMSanitizedForMetric)
 
-- (NSString *)sanitizedForMetric;
+- (NSString *)alm_sanitizedForMetric;
 
 @end

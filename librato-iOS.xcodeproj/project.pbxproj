@@ -17,7 +17,7 @@
 		6692259917FE44B800237E77 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6692258117FE44B800237E77 /* UIKit.framework */; };
 		669225A117FE44B800237E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6692259F17FE44B800237E77 /* InfoPlist.strings */; };
 		669225A317FE44B800237E77 /* librato_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225A217FE44B800237E77 /* librato_iOSTests.m */; };
-		669225B117FE457800237E77 /* NSString+SanitizedForMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */; };
+		669225B117FE457800237E77 /* NSString+ALMSanitizedForMetric.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B017FE457800237E77 /* NSString+ALMSanitizedForMetric.m */; };
 		669225C017FE458100237E77 /* LibratoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B317FE458100237E77 /* LibratoClient.m */; };
 		669225C117FE458100237E77 /* LibratoConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B517FE458100237E77 /* LibratoConnection.m */; };
 		669225C217FE458100237E77 /* LibratoDirectPersister.m in Sources */ = {isa = PBXBuildFile; fileRef = 669225B717FE458100237E77 /* LibratoDirectPersister.m */; };
@@ -57,8 +57,8 @@
 		6692259E17FE44B800237E77 /* librato-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "librato-iOSTests-Info.plist"; sourceTree = "<group>"; };
 		669225A017FE44B800237E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		669225A217FE44B800237E77 /* librato_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = librato_iOSTests.m; sourceTree = "<group>"; };
-		669225AF17FE457800237E77 /* NSString+SanitizedForMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SanitizedForMetric.h"; sourceTree = "<group>"; };
-		669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SanitizedForMetric.m"; sourceTree = "<group>"; };
+		669225AF17FE457800237E77 /* NSString+ALMSanitizedForMetric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ALMSanitizedForMetric.h"; sourceTree = "<group>"; };
+		669225B017FE457800237E77 /* NSString+ALMSanitizedForMetric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ALMSanitizedForMetric.m"; sourceTree = "<group>"; };
 		669225B217FE458100237E77 /* LibratoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoClient.h; sourceTree = "<group>"; };
 		669225B317FE458100237E77 /* LibratoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibratoClient.m; sourceTree = "<group>"; };
 		669225B417FE458100237E77 /* LibratoConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibratoConnection.h; sourceTree = "<group>"; };
@@ -184,8 +184,8 @@
 		669225AC17FE454800237E77 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				669225AF17FE457800237E77 /* NSString+SanitizedForMetric.h */,
-				669225B017FE457800237E77 /* NSString+SanitizedForMetric.m */,
+				669225AF17FE457800237E77 /* NSString+ALMSanitizedForMetric.h */,
+				669225B017FE457800237E77 /* NSString+ALMSanitizedForMetric.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 				669225C417FE458100237E77 /* LibratoProcessor.m in Sources */,
 				669225C517FE458100237E77 /* LibratoQueue.m in Sources */,
 				6692260A17FF3C2A00237E77 /* Librato.m in Sources */,
-				669225B117FE457800237E77 /* NSString+SanitizedForMetric.m in Sources */,
+				669225B117FE457800237E77 /* NSString+ALMSanitizedForMetric.m in Sources */,
 				669225C617FE458100237E77 /* LibratoVersion.m in Sources */,
 				669225CC17FE458800237E77 /* LibratoMetric.m in Sources */,
 				669225C017FE458100237E77 /* LibratoClient.m in Sources */,
