@@ -5,9 +5,9 @@ librato-iOS
 
 Metrics are automatically cached while the network is unavailable and saved if the app closes before they're submitted. Don't worry about submitting metrics, we make sure they don't go missing before they can be handed off to Librato's service.
 
-Currently iOS version 7 and above is supported and the wonderful [AFNetworking 2](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
+Currently iOS version 8 and above is supported and the wonderful [AFNetworking 2](https://github.com/AFNetworking/AFNetworking) is used to handle network duties.
 
-If you need iOS 6 support, you can use the `1.0.2` release, which uses AFNetworking 1.x.
+If you need iOS 7 support, you can use the `1.1.0` release, which uses AFNetworking 1.x.
 
 # Quick Start
 
@@ -189,6 +189,7 @@ If the app caches metrics while offline and is then closed all cached metrics ar
 
 * [Adam Yanalunas](https://github.com/adamyanalunas)
 * [nap-sam-dean](https://github.com/nap-sam-dean)
+* [Sergey Kuryanov](https://github.com/SergeyKuryanov)
 
 # Copyright
 
