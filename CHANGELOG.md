@@ -1,6 +1,6 @@
 ### Version 1.2.2
 
-* Fixed issue when builded as static library using cocoapods
+* Fixed issue preventing building as static library using CocoaPods
 
 ### Version 1.1.0
 
