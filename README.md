@@ -193,4 +193,4 @@ If the app caches metrics while offline and is then closed all cached metrics ar
 
 # Copyright
 
-Copyright (c) 2013 Amco International Education Services, LLC. See LICENSE for more details.
+Copyright (c) 2018 Amco International Education Services, LLC. See LICENSE for more details.
