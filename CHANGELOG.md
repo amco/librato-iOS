@@ -1,3 +1,7 @@
+### Version 1.2.2
+
+* Fixed issue when builded as static library using cocoapods
+
 ### Version 1.1.0
 
 Upgrade to AFNetworking ~> 2.0 (iOS 7 only)
