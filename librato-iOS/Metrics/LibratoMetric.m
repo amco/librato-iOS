@@ -8,7 +8,7 @@
 
 #import "LibratoMetric.h"
 #import "NSString+ALMSanitizedForMetric.h"
-#import "MTLValueTransformer.h"
+#import <Mantle/MTLValueTransformer.h>
 
 NSString *const LibratoMetricMeasureTimeKey = @"measure_time";
 NSString *const LibratoMetricNameKey = @"name";
