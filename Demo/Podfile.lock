@@ -16,10 +16,10 @@ PODS:
     - AFNetworking/NSURLSession
   - librato-iOS (1.2.2):
     - AFNetworking (~> 3.2)
-    - Mantle (~> 1.3)
-  - Mantle (1.5.8):
-    - Mantle/extobjc (= 1.5.8)
-  - Mantle/extobjc (1.5.8)
+    - Mantle (~> 2.1)
+  - Mantle (2.1.0):
+    - Mantle/extobjc (= 2.1.0)
+  - Mantle/extobjc (2.1.0)
 
 DEPENDENCIES:
   - librato-iOS (from `../librato-iOS.podspec`)
@@ -35,8 +35,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  librato-iOS: 2f81a2d383d2f0a7452d8f11284f33608530bdf9
-  Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
+  librato-iOS: 1e81d75af883abe3f588f2ba3b29efd6379c4dfe
+  Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
 
 PODFILE CHECKSUM: 5817b13129eeec85d2fa75a097e506a23de0ee12
 
