@@ -1,3 +1,8 @@
+### Version 1.2.3
+
+* Upgrade to AFNetworking ~> 3.2
+* Upgrade to Mantle ~> 2.1
+
 ### Version 1.2.2
 
 * Fixed issue preventing building as static library using CocoaPods
