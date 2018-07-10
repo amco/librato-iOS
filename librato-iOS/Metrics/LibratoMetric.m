@@ -61,8 +61,7 @@ NSString *const LibratoMetricValueKey = @"value";
         @"name": LibratoMetricNameKey,
         @"value": LibratoMetricValueKey,
         @"measureTime": LibratoMetricMeasureTimeKey,
-        @"source": LibratoMetricSourceKey,
-        @"type": NSNull.null
+        @"source": LibratoMetricSourceKey
     };
 }
 

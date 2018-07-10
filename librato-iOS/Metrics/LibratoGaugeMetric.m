@@ -71,9 +71,7 @@ NSString *const squaresKey = @"sum_squares";
         @"sum": sumKey,
         @"min": minKey,
         @"max": maxKey,
-        @"squares": squaresKey,
-        @"type": NSNull.null,
-        LibratoMetricValueKey: NSNull.null
+        @"squares": squaresKey
     };
 }
 
