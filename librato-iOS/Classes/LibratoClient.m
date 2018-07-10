@@ -173,7 +173,7 @@ NSString *APIKey;
     }
     
     NSString *path = [NSString stringWithFormat:@"metrics/%@", name];
-    [self GET:path parameters:query
+    [self GET:path parameters:query progress:nil
       success:^(NSURLSessionDataTask *task, id JSON) {
           if (success)
           {
@@ -230,7 +230,7 @@ NSString *APIKey;
     
     [self.queue clear];
     
-    [self POST:@"metrics" parameters:payload
+    [self POST:@"metrics" parameters:payload progress:nil
        success:^(NSURLSessionDataTask *task, id JSON) {
            if (success)
            {

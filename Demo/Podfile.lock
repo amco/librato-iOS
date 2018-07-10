@@ -1,27 +1,21 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - librato-iOS (1.2.2):
-    - AFNetworking (~> 2.0)
+    - AFNetworking (~> 3.2)
     - Mantle (~> 2.1)
   - Mantle (2.1.0):
     - Mantle/extobjc (= 2.1.0)
@@ -40,8 +34,8 @@ EXTERNAL SOURCES:
     :path: "../librato-iOS.podspec"
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  librato-iOS: e66bc97e62ef9aa7ca8b94ed318595c8b86cc81d
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  librato-iOS: 1e81d75af883abe3f588f2ba3b29efd6379c4dfe
   Mantle: 2fa750afa478cd625a94230fbf1c13462f29395b
 
 PODFILE CHECKSUM: 5817b13129eeec85d2fa75a097e506a23de0ee12
