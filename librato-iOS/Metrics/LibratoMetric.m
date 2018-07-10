@@ -61,17 +61,16 @@ NSString *const LibratoMetricValueKey = @"value";
         @"name": LibratoMetricNameKey,
         @"value": LibratoMetricValueKey,
         @"measureTime": LibratoMetricMeasureTimeKey,
-        @"source": LibratoMetricSourceKey,
-        @"type": NSNull.null
+        @"source": LibratoMetricSourceKey
     };
 }
 
 
 + (NSValueTransformer *)measureTimeJSONTransformer
 {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *epoch) {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSNumber *epoch, BOOL *success, NSError **error) {
         return [NSDate dateWithTimeIntervalSince1970:epoch.integerValue];
-    } reverseBlock:^id(NSDate *date) {
+    } reverseBlock:^id(NSDate *date, BOOL *success, NSError **error) {
         return @(floor(date.timeIntervalSince1970));
     }];
 }
@@ -79,10 +78,10 @@ NSString *const LibratoMetricValueKey = @"value";
 
 + (NSValueTransformer *)nameJSONTransformer
 {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *name) {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *name, BOOL *success, NSError **error) {
         NSAssert(name.length > 0, @"Measurements must be named");
         return name.alm_sanitizedForMetric;
-    } reverseBlock:^id(NSString *name) {
+    } reverseBlock:^id(NSString *name, BOOL *success, NSError **error) {
         return name.alm_sanitizedForMetric;
     }];
 }
@@ -90,9 +89,9 @@ NSString *const LibratoMetricValueKey = @"value";
 
 + (NSValueTransformer *)sourceJSONTransformer
 {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *source) {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *source, BOOL *success, NSError **error) {
         return source.alm_sanitizedForMetric;
-    } reverseBlock:^id(NSString *source) {
+    } reverseBlock:^id(NSString *source, BOOL *success, NSError **error) {
         return (source.length ? source.alm_sanitizedForMetric : nil);
     }];
 }
@@ -100,10 +99,10 @@ NSString *const LibratoMetricValueKey = @"value";
 
 + (NSValueTransformer *)valueJSONTransformer
 {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *value) {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSNumber *value, BOOL *success, NSError **error) {
         NSAssert([self.class isValidValue:value], @"Boolean is not a valid metric value");
         return value;
-    } reverseBlock:^id(NSNumber *value) {
+    } reverseBlock:^id(NSNumber *value, BOOL *success, NSError **error) {
         return value;
     }];
 }
@@ -113,7 +112,7 @@ NSString *const LibratoMetricValueKey = @"value";
 - (NSDictionary *)JSONDictionary
 {
     NSArray *nonNullableKeys = @[@"source"];
-	__block NSMutableDictionary *jsonDict = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
+    __block NSMutableDictionary *jsonDict = [MTLJSONAdapter JSONDictionaryFromModel:self error:nil].mutableCopy;
     [nonNullableKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         if ([jsonDict.allKeys containsObject:key] && (jsonDict[key] == NSNull.null || jsonDict[key] == nil))
         {
