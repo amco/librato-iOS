@@ -52,7 +52,7 @@ NSString *const squaresKey = @"sum_squares";
 #pragma mark - Calculations
 - (void)calculateStatisticsFromMeasurements:(NSArray *)measurements
 {
-    _count   = [measurements valueForKeyPath:@"@count.self"];
+    _counter   = [measurements valueForKeyPath:@"@count.self"];
     _sum     = [measurements valueForKeyPath:@"@sum.value"];
     _max     = [measurements valueForKeyPath:@"@max.value"];
     _min     = [measurements valueForKeyPath:@"@min.value"];
